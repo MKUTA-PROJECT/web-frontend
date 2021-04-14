@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mims';
+  title = ' MKUTA INFORMATION MANAGEMENT SYSTEM (MIMS)';
+  username = 'Dr Martin'
+  links = [
+    {path: '/home', icon: 'home', title: 'Home'},
+    {path: '/activities', icon: 'local_activity', title: 'Activities'},
+    {path: 'clubs', icon: 'house_siding', title: 'Clubs'},
+    {path: '/clients', icon: 'people', title: 'Clients'},
+    {path: '/members', icon: 'people', title: 'Members'},
+    {path: '/staffs', icon: 'people_outline', title: 'Staffs'}
+  ];
 }
