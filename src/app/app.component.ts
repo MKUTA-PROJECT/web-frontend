@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = ' MKUTA INFORMATION MANAGEMENT SYSTEM (MIMS)';
-  username = 'Dr Martin'
+  username = 'Simon Machera'
   links = [
     {path: '/home', icon: 'home', title: 'Home'},
     {path: '/activities', icon: 'local_activity', title: 'Activities'},

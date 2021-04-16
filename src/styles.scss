@@ -23,8 +23,8 @@ p {
 }
 
 .container {
-  margin: 10px;
-  flex-wrap: wrap;
+  // margin: 10px;  //this makes the toobar 2 float
+  // flex-wrap: wrap;
 }
 
 .container [class*='col'] {
@@ -56,7 +56,7 @@ mat-toolbar {
 }
 
 mat-sidenav {
-  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+  // box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
   width: 200px;
   padding-top: 10px;
 }
@@ -346,6 +346,7 @@ mat-toolbar {
 
   >.mat-mini-fab {
     margin-right: 10px;
+    
   }
 
   .spacer {
@@ -354,6 +355,8 @@ mat-toolbar {
 
   .title {
     vertical-align: middle;
+    padding-left: 40%;
+  
   }
 
   .logo {
