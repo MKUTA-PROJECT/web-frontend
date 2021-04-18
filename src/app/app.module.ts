@@ -11,6 +11,8 @@ import { ClubsComponent } from './clubs/clubs.component';
 import { MembersComponent } from './members/members.component';
 import { StaffComponent } from './staff/staff.component';
 import { ClientsComponent } from './clients/clients.component';
+import { ClubsService } from './shared/services/clubs/clubs.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,10 +31,13 @@ import { ClientsComponent } from './clients/clients.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
     
   ],
-  providers: [],
+  providers: [
+    ClubsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

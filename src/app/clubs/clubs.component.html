@@ -3,7 +3,7 @@
         <span>Club View</span>
     </div>
     <div >
-        <mat-form-field  appearance="fill" >  <!-- legacy an outline are other directives of appearance-->
+        <mat-form-field  appearance="fill" >  <!-- legacy and outline are other directives of appearance-->
             <input matInput (keyup)="applyFilter($event)" placeholder="Search Club" #input>
             <mat-icon matPostfix>search</mat-icon>
         </mat-form-field>
@@ -45,22 +45,59 @@
         <td mat-cell *matCellDef="let row"> {{row.id}} </td>
       </ng-container>
   
-      <!-- Progress Column -->
-      <ng-container matColumnDef="progress">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-        <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
-      </ng-container>
-  
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.name}}% </td>
       </ng-container>
   
-      <!-- Color Column -->
-      <ng-container matColumnDef="color">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
-        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+      <!-- Facility Column -->
+      <ng-container matColumnDef="facility">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Facility </th>
+        <td mat-cell *matCellDef="let row"> {{row.facility}} </td>
+      </ng-container>
+  
+      <!-- Zone Column -->
+      <ng-container matColumnDef="zone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Zone </th>
+        <td mat-cell *matCellDef="let row"> {{row.zone}} </td>
+      </ng-container>
+
+      <!-- District Column -->
+      <ng-container matColumnDef="region">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Region </th>
+        <td mat-cell *matCellDef="let row"> {{row.region}} </td>
+      </ng-container>
+
+
+      <!-- District Column -->
+      <ng-container matColumnDef="district">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Facility </th>
+        <td mat-cell *matCellDef="let row"> {{row.district}} </td>
+      </ng-container>
+
+      <!-- SUb Disti=rict Column -->
+      <ng-container matColumnDef="sub_district">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub District </th>
+        <td mat-cell *matCellDef="let row"> {{row.sub_district}} </td>
+      </ng-container>
+
+      <!-- Ward Column -->
+      <ng-container matColumnDef="ward">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ward </th>
+        <td mat-cell *matCellDef="let row"> {{row.ward}} </td>
+      </ng-container>
+
+      <!-- Street Column -->
+      <ng-container matColumnDef="street">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Street </th>
+        <td mat-cell *matCellDef="let row"> {{row.street}} </td>
+      </ng-container>
+
+      <!-- Facility Column -->
+      <ng-container matColumnDef="supervisor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Supervisor </th>
+        <td mat-cell *matCellDef="let row"> {{row.supervisor}} </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
