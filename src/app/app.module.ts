@@ -13,6 +13,9 @@ import { StaffComponent } from './staff/staff.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ClubsService } from './shared/services/clubs/clubs.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SelectedclubComponent } from './clubs/selectedclub/selectedclub.component';
+import { ClubformComponent } from './clubs/clubform/clubform.component';
 
 
 
@@ -25,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     MembersComponent,
     StaffComponent,
     ClientsComponent,
+    SelectedclubComponent,
+    ClubformComponent,
     
   ],
   imports: [
@@ -32,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
     
   ],
   providers: [

@@ -6,11 +6,15 @@ import { ClubsComponent } from './clubs/clubs.component';
 import { HomeComponent } from './home/home.component';
 import { MembersComponent } from './members/members.component';
 import { StaffComponent } from './staff/staff.component';
-
+import {SelectedclubComponent} from './clubs/selectedclub/selectedclub.component'
+import { ClubformComponent } from './clubs/clubform/clubform.component';
 
 const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent},
   { path: 'clubs', component: ClubsComponent},
+    { path: 'clubs/form', component: ClubformComponent},
+    { path: 'clubs/:id', component: SelectedclubComponent},
+    
   { path: 'home', component: HomeComponent },
   {path: 'members', component: MembersComponent},
   {path: 'staffs', component: StaffComponent},
