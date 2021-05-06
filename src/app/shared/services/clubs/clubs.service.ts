@@ -6,7 +6,8 @@ const BASE_URL = 'http://127.0.0.1:8000/'
   providedIn: 'root'
 })
 export class ClubsService {
-  private model = 'clubs/';
+  private model = 'clubs/';       // all clubs
+
   constructor(private http: HttpClient){}
 
   allClubs(){
@@ -14,10 +15,17 @@ export class ClubsService {
   }
 
   findClub(clubId){
-
+    return this.http.get<any>(this.geturl()+clubId+'/')
   }
+  findClubMembers(clubId){
+    return this.http.get<any>(`${BASE_URL}${this.model}`+clubId+'/member/')
+  }
+  findClubSupervisor(clubId){
+    return this.http.get<any>(`${BASE_URL}${this.model}`+clubId+'/supervisor/')
+  }
+
   createClub(club){
-    return this.http.get<any>(this.geturl(), club)
+    return this.http.post<any>(this.geturl(), club)
   }
   updateClub(club){
 

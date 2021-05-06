@@ -1,0 +1,72 @@
+<mat-card >
+        <mat-card-header>
+            <mat-card-title>
+            {{clubData?.name}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class ="side">
+                <div class="column1">
+                    <div class="location">
+                        <div>
+                            <mat-card-subtitle>Location</mat-card-subtitle>
+                        </div>
+                        <div>
+                            <div>
+                                <span>Zone:  {{clubData?.zone}} </span>
+                            </div>
+                            <div>
+                                <span>Region:  {{clubData?.region}} </span>
+                            </div>
+                            <div>
+                                <span>District:  {{clubData?.district}}</span>
+                            </div>
+                            <div>
+                                <span>Sub-District:  {{clubData?.sub_district}} </span>
+                            </div>
+                            <div>
+                                <span>Ward: {{clubData?.ward}}</span>
+                            </div>
+                            <div>
+                                <span>Street: {{clubData?.street}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="supervisor">
+                        <div>
+                            <mat-card-subtitle>Supervisor</mat-card-subtitle>
+                        </div>
+                        <div>
+                            <div>
+                                <span>Name: {{supervisorData?.first_name}} {{supervisorData?.last_name}}</span>
+                            </div>
+                            <div>
+                                <span>Title: {{supervisorData?.position}}</span>
+                            </div>
+                            <div>
+                                <span>Tel: {{supervisorData?.tel}}</span>
+                            </div>
+                            <div>
+                                <span>Email: {{supervisorData?.email}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column1">
+                    <div>
+                        <span>Health Facility: {{clubData?.health_facility}}</span>
+                    </div>
+                    <div>
+                        <span>Tel: {{clubData?.phone}}</span>
+                    </div>
+                    <div>
+                        <span>Email: {{clubData?.email}}</span>
+                    </div>
+                    <div>
+                        <span>Office: {{clubData?.office}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </mat-card-content>
+        </mat-card>

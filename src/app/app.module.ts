@@ -16,6 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SelectedclubComponent } from './clubs/selectedclub/selectedclub.component';
 import { ClubformComponent } from './clubs/clubform/clubform.component';
+import { ClubdetailsComponent } from './clubs/selectedclub/clubdetails/clubdetails.component';
+import { ClubmembersComponent } from './clubs/selectedclub/clubmembers/clubmembers.component';
+import { ClubleadersComponent } from './clubs/selectedclub/clubleaders/clubleaders.component';
+import { ClubactivitiesComponent } from './clubs/selectedclub/clubactivities/clubactivities.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 
@@ -30,6 +35,10 @@ import { ClubformComponent } from './clubs/clubform/clubform.component';
     ClientsComponent,
     SelectedclubComponent,
     ClubformComponent,
+    ClubdetailsComponent,
+    ClubmembersComponent,
+    ClubleadersComponent,
+    ClubactivitiesComponent,
     
   ],
   imports: [
@@ -38,7 +47,8 @@ import { ClubformComponent } from './clubs/clubform/clubform.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollingModule
     
   ],
   providers: [

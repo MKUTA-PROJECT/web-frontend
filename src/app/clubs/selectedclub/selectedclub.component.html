@@ -1,1 +1,22 @@
-<p>selectedclub works!</p>
+<div class = "selected-club">
+    <section class="column">
+        <div class="row1">
+            <app-clubdetails [supervisorData]="supervisorData"
+            [clubData]="clubData" >
+            </app-clubdetails>
+            
+        </div>
+        <div class="row2">
+            <app-clubmembers [dataSource]="dataSource">
+            </app-clubmembers>
+        </div>
+    </section>
+    <section class="column1">
+        <div class="row1">
+            <app-clubleaders></app-clubleaders>
+        </div>
+        <div class="row2">
+            <app-clubactivities></app-clubactivities>
+        </div>
+    </section>
+</div>

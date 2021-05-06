@@ -69,7 +69,7 @@ export class ClubsComponent implements AfterViewInit {
   }
   // Below are service access methods for CRUID
   allClubs(){
-    this.clubsService.allClubs().subscribe(clubs => this.dataSource.data = clubs);
+    this.clubsService.allClubs().subscribe(clubs => {this.dataSource.data = clubs, console.log(clubs)});
   }
   
   getClub(clubId){

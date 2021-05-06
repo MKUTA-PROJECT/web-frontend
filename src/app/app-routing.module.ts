@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: 'clubs/form', component: ClubformComponent},
     { path: 'clubs/:id', component: SelectedclubComponent},
     
-  { path: 'home', component: HomeComponent },
+  {path: 'home', component: HomeComponent },
   {path: 'members', component: MembersComponent},
   {path: 'staffs', component: StaffComponent},
   {path: 'clients', component: ClientsComponent},
