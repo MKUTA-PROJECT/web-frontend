@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -58,8 +58,6 @@ export class ClubsComponent implements AfterViewInit {
   
   // On clicking the row data, load this method
   selectedClub(id) {
-    // this.router.navigateByUrl('/clubs', id);  this is for navigation with url
-
     this.router.navigate(['/clubs', id]);  //this for navigation with id
   }
 

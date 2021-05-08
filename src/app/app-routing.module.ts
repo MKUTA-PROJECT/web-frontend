@@ -8,6 +8,8 @@ import { MembersComponent } from './members/members.component';
 import { StaffComponent } from './staff/staff.component';
 import {SelectedclubComponent} from './clubs/selectedclub/selectedclub.component'
 import { ClubformComponent } from './clubs/clubform/clubform.component';
+import { SelectedmemberComponent } from './members/selectedmember/selectedmember.component';
+import { MemberformComponent } from './members/memberform/memberform.component';
 
 const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent},
@@ -17,6 +19,9 @@ const routes: Routes = [
     
   {path: 'home', component: HomeComponent },
   {path: 'members', component: MembersComponent},
+    { path: 'members/form', component: MemberformComponent},
+    { path: 'members/:id', component: SelectedmemberComponent},
+
   {path: 'staffs', component: StaffComponent},
   {path: 'clients', component: ClientsComponent},
   { path: '**', redirectTo: '/home' }

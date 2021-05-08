@@ -21,6 +21,10 @@ import { ClubmembersComponent } from './clubs/selectedclub/clubmembers/clubmembe
 import { ClubleadersComponent } from './clubs/selectedclub/clubleaders/clubleaders.component';
 import { ClubactivitiesComponent } from './clubs/selectedclub/clubactivities/clubactivities.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MemberformComponent } from './members/memberform/memberform.component';
+import { SelectedmemberComponent } from './members/selectedmember/selectedmember.component';
+import { MemberdetailComponent } from './members/selectedmember/memberdetail/memberdetail.component';
+import { MemberactivitiesComponent } from './members/selectedmember/memberactivities/memberactivities.component';
 
 
 
@@ -39,6 +43,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ClubmembersComponent,
     ClubleadersComponent,
     ClubactivitiesComponent,
+    MemberformComponent,
+    SelectedmemberComponent,
+    MemberdetailComponent,
+    MemberactivitiesComponent,
     
   ],
   imports: [

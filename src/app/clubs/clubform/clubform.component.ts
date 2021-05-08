@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ClubsService } from 'src/app/shared/services/clubs/clubs.service';
 import { SupervisorService } from 'src/app/shared/services/supervisor/supervisor.service';
 import { ClubsComponent } from '../clubs.component';
@@ -13,7 +14,8 @@ import { ClubsComponent } from '../clubs.component';
 export class ClubformComponent implements OnInit {
 
   
-  constructor(private fb: FormBuilder, private clubsService: ClubsService, private SupervisorService: SupervisorService) { }
+  constructor(private fb: FormBuilder, private clubsService: ClubsService,
+              private SupervisorService: SupervisorService, private router: Router) { }
 
   supervisors = this.SupervisorService.allSupervisors()
 
@@ -54,14 +56,11 @@ export class ClubformComponent implements OnInit {
   
       this.clubsService.createClub(this.registrationForm.value).subscribe(result => 
       console.log('succeesful created', result));
+      this.router.navigateByUrl('/clubs');
       console.log(this.registrationForm.value);
     }
     
   allSupervisors(){
       this.SupervisorService.allSupervisors().subscribe(supervisor => this.supervisors = supervisor);
   }
-    
-  
-
-
 }

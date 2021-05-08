@@ -1,7 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { ClubsService } from 'src/app/shared/services/clubs/clubs.service';
-import { SupervisorService } from 'src/app/shared/services/supervisor/supervisor.service';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-clubdetails',
