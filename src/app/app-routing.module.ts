@@ -20,13 +20,16 @@ const routes: Routes = [
     { path: 'clubs/:id', component: SelectedclubComponent},
     
   {path: 'home', component: HomeComponent },
-  {path: 'members', component: MembersComponent},
-    { path: 'members/form', component: MemberformComponent},
-    { path: 'members/:id', component: SelectedmemberComponent},
 
   {path: 'staffs', component: StaffComponent},
     { path: 'staffs/form', component: StaffformComponent},
     { path: 'staffs/:id', component: SelectedstaffComponent},
+
+
+  {path: 'members', component: MembersComponent},
+    { path: 'members/form', component: MemberformComponent},
+    { path: 'members/:id', component: SelectedmemberComponent},
+
   {path: 'clients', component: ClientsComponent},
   { path: '**', redirectTo: '/home' }
 ];
