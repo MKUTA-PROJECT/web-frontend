@@ -25,6 +25,8 @@ import { MemberformComponent } from './members/memberform/memberform.component';
 import { SelectedmemberComponent } from './members/selectedmember/selectedmember.component';
 import { MemberdetailComponent } from './members/selectedmember/memberdetail/memberdetail.component';
 import { MemberactivitiesComponent } from './members/selectedmember/memberactivities/memberactivities.component';
+import { StaffformComponent } from './staff/staffform/staffform.component';
+import { SelectedstaffComponent } from './staff/selectedstaff/selectedstaff.component';
 
 
 
@@ -47,6 +49,8 @@ import { MemberactivitiesComponent } from './members/selectedmember/memberactivi
     SelectedmemberComponent,
     MemberdetailComponent,
     MemberactivitiesComponent,
+    StaffformComponent,
+    SelectedstaffComponent,
     
   ],
   imports: [

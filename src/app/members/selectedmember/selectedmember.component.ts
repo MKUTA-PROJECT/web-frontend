@@ -25,7 +25,7 @@ export interface memberArray {
 })
 export class SelectedmemberComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private membersService: MemberService) { }
+  constructor(private route: ActivatedRoute, private membersService: MemberService) { }
 
    // Member details area
    memberId : number;
@@ -37,7 +37,7 @@ export class SelectedmemberComponent implements OnInit {
   this.getMember()
   }
 
-  // This is for Club details child
+  // This is for mmber details child
   getMember(){
     this.membersService.findMember(this.memberId).subscribe(data => {this.memberData = Object.assign({}, ...data),  console.log(data)});
   }

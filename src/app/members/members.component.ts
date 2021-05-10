@@ -55,12 +55,10 @@ export class MembersComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
     // On clicking the row data, load this method
     selectedMember(id) {
       this.router.navigate(['/members', id]);  //this for navigation with id
-    }
-  
+    }  
     // Member registration function
     registerMember(){
       this.router.navigateByUrl('/members/form');
@@ -69,13 +67,4 @@ export class MembersComponent implements AfterViewInit {
     allMembers(){
       this.memberService.allMembers().subscribe(members => {this.dataSource.data = members, console.log(members)});
     }
-    
-    // getClub(clubId){
-    //   this.clubsService.findClub(clubId);
-    // }
-  
-    // createClub(club){
-    //   return this.clubsService.createClub;
-    // }
-
 }

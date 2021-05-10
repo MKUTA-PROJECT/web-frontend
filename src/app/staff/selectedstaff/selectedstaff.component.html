@@ -1,0 +1,45 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Staff Details</mat-card-title>
+    </mat-card-header>
+    <!-- <img matCardImage src="Card wide image source"> -->
+    <mat-card-content>
+        <div class="details">
+            <div class="sub-details">
+                <div>
+                    <span>First Name: {{staffData?.first_name}}</span>
+                </div>
+                <div>
+                    <span>Middle Name: {{staffData?.middle_name}}</span>
+                </div>
+                <div>
+                    <span>Last Name: {{staffData?.last_name}}</span>
+                </div>
+                <div>
+                    <span>Club Name: {{staffData?.club}}</span>
+                </div>
+                <div>
+                    <span>Date joined: {{staffData?.date_joined}}</span>
+                </div>
+            </div>
+            <div class="sub-details">
+                <div>
+                    <span>Status: {{staffData?.status}}</span>
+                </div>
+                <div>
+                    <span>Tel: {{staffData?.tel}}</span>
+                </div>
+                <div>
+                    <span>Email: {{staffData?.email}}</span>
+                </div>
+            </div>
+            <div class="sub-details">
+                <img matCardImage  alt="Photo of a Shiba Inu">
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <button mat-button >Edit</button>
+        
+    </mat-card-actions>
+</mat-card>

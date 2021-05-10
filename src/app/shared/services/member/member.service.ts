@@ -18,6 +18,13 @@ export class MemberService {
     return this.http.get<any>(this.geturl()+memberId+'/')
   }
 
+  createMember(member){
+    return this.http.post<any>(this.geturl(), member)
+  }
+  createMemberProfile(memberProfile){
+    return this.http.post<any>(this.geturl()+'profile/', memberProfile)
+  }
+
   private geturl(){
     return `${BASE_URL}${this.model}`;
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClubsService } from 'src/app/shared/services/clubs/clubs.service';
 import { SupervisorService } from 'src/app/shared/services/supervisor/supervisor.service';
@@ -33,12 +33,7 @@ export class ClubformComponent implements OnInit {
     street: ['',[Validators.required]],
     supervisor: [ ,[Validators.required]],
   })    
-  get altClubTel(){
-    return this.registrationForm.get('clubtel') as FormArray;
-  }
-  addAltClubTell(){
-    this.altClubTel.push(this.fb.control(''));
-  }
+
   getErrorMessage() {
     if (this.registrationForm.get('email').hasError('required')) {
       return 'You must enter a value for email';

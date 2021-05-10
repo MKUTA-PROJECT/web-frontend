@@ -10,6 +10,8 @@ import {SelectedclubComponent} from './clubs/selectedclub/selectedclub.component
 import { ClubformComponent } from './clubs/clubform/clubform.component';
 import { SelectedmemberComponent } from './members/selectedmember/selectedmember.component';
 import { MemberformComponent } from './members/memberform/memberform.component';
+import { StaffformComponent } from './staff/staffform/staffform.component';
+import { SelectedstaffComponent } from './staff/selectedstaff/selectedstaff.component';
 
 const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent},
@@ -23,6 +25,8 @@ const routes: Routes = [
     { path: 'members/:id', component: SelectedmemberComponent},
 
   {path: 'staffs', component: StaffComponent},
+    { path: 'staffs/form', component: StaffformComponent},
+    { path: 'staffs/:id', component: SelectedstaffComponent},
   {path: 'clients', component: ClientsComponent},
   { path: '**', redirectTo: '/home' }
 ];
