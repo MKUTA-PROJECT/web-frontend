@@ -49,17 +49,31 @@
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
 
-      <mat-form-field class="fieldCss" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Status</mat-label>
-        <input matInput formControlName = "status">
-        <mat-error *ngIf="registrationForm.get('status').hasError('required')"> Status is required </mat-error>
+        <mat-select formControlName="status" required>
+          <mat-option value="Active">Active</mat-option>
+          <mat-option value="Domant">Domant</mat-option>
+          <mat-option value="Dead">Dead</mat-option>
+        </mat-select>
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fee Payement</mat-label>
+        <mat-select formControlName="fee_status" required>
+          <mat-option value="Paid">Paid</mat-option>
+          <mat-option value="Not Paid">Not Paid</mat-option>
+        </mat-select>
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
 
       <mat-form-field class="fieldCss" appearance="fill">
-        <mat-label>Club</mat-label>
-        <input matInput formControlName = "club">
-        <mat-error *ngIf="registrationForm.get('club').hasError('required')"> Status is required </mat-error>
+        <mat-label> Club</mat-label>
+        <mat-select  formControlName="club" >
+          <mat-option *ngFor="let club of clubs | async"  [value]="club.id">{{club.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="registrationForm.get('club').hasError('required')"> Club Name is required </mat-error>
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
 

@@ -66,6 +66,6 @@ memberValue: staffArray[];
     }
     // Below are service access methods for CRUID
     allStaffs(){
-      this.staffService.allStaffs().subscribe(staffs => {this.dataSource.data = staffs, console.log(staffs)});
+      this.staffService.allStaffs().subscribe(staffs => this.dataSource.data = staffs);
     }
 }

@@ -45,8 +45,6 @@
       <mat-form-field class="fieldCss" appearance="fill">
         <mat-label> Supervisor</mat-label>
         <mat-select  formControlName="supervisor" >
-          <mat-option value="default"></mat-option>
-          <mat-option value="d">fgd</mat-option>
           <mat-option *ngFor="let supervisor of supervisors | async"  [value]="supervisor.id">{{ supervisor.first_name }} {{supervisor.last_name}}</mat-option>
         </mat-select>
         <mat-error *ngIf="registrationForm.get('supervisor').hasError('required')"> Supervisor Name is required </mat-error>

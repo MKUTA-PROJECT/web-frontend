@@ -3,6 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ClubsService } from '../shared/services/clubs/clubs.service';
 import { MemberService } from '../shared/services/member/member.service';
 
 export interface memberArray {
@@ -36,7 +37,7 @@ export class MembersComponent implements AfterViewInit {
 
   memberValue: memberArray[];
 
-  constructor(private router: Router, private route:ActivatedRoute, private memberService: MemberService) { 
+  constructor(private router: Router, private route:ActivatedRoute, private memberService: MemberService, private clubsService: ClubsService) { 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.memberValue);
   }
@@ -64,7 +65,42 @@ export class MembersComponent implements AfterViewInit {
       this.router.navigateByUrl('/members/form');
     }
     // Below are service access methods for CRUID
+    ELEMENT_DATA: memberArray[]=[];
     allMembers(){
-      this.memberService.allMembers().subscribe(members => {this.dataSource.data = members, console.log(members)});
+      this.memberService.allMembers().subscribe(members => 
+        {this.ELEMENT_DATA = members
+
+          //to return the name of Club and Role instead of  the id
+          for(let i=0;i<this.ELEMENT_DATA.length;i++){ 
+            this.clubsService.findClub(this.ELEMENT_DATA[i].club).subscribe(
+                data=>{
+                  let name:{ name: any; role:any; }
+                  name =  data
+                  this.ELEMENT_DATA[i].club= name.name
+
+                  if(this.ELEMENT_DATA[i].role == 1){
+                    this.ELEMENT_DATA[i].role = 'Chairman'
+                  }
+                  else if(this.ELEMENT_DATA[i].role == 2){
+                    this.ELEMENT_DATA[i].role = 'Assistant Chairman'
+                  }
+                  else if(this.ELEMENT_DATA[i].role == 3){
+                    this.ELEMENT_DATA[i].role = 'Secrtary'
+                  }
+                  else if(this.ELEMENT_DATA[i].role == 4){
+                    this.ELEMENT_DATA[i].role = 'Assistant Secrtary'
+                  }
+                  else if(this.ELEMENT_DATA[i].role == 5){
+                    this.ELEMENT_DATA[i].role = 'Treasurer'
+                  }
+                  else {
+                    this.ELEMENT_DATA[i].role = 'Member'
+                  }
+                }
+               )
+          }
+         
+          this.dataSource.data = this.ELEMENT_DATA
+        });
     }
 }

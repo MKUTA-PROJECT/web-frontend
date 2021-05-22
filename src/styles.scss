@@ -55,6 +55,7 @@ mat-toolbar {
   z-index: 1;
 }
 
+
 mat-sidenav {
   // box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
   width: 200px;
@@ -357,6 +358,9 @@ mat-toolbar {
     }
   }
 }
+
+
+
 
 // /* Importing Bootstrap SCSS file. */     uncommenting this affects the behaviour of my workspace
 // @import '~bootstrap/scss/bootstrap';

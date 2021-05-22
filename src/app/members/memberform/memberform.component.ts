@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClubsService } from 'src/app/shared/services/clubs/clubs.service';
 import { MemberService } from 'src/app/shared/services/member/member.service';
 
 @Component({
@@ -10,8 +11,9 @@ import { MemberService } from 'src/app/shared/services/member/member.service';
 })
 export class MemberformComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router, private membersService: MemberService) { }
+  constructor(private fb: FormBuilder, private router: Router, private membersService: MemberService, private clubsService: ClubsService) { }
 
+  clubs = this.clubsService.allClubs()
   ngOnInit(): void {
   }
   // only fill the fields with no default value
@@ -22,6 +24,7 @@ export class MemberformComponent implements OnInit {
     email: ['',[Validators.required,Validators.email,]],
     role: ['',[Validators.required]],
     status: ['',[Validators.required]],
+    fee_status: ['',[Validators.required]],
     tel: ['',[Validators.required]],
     club: [ '',[Validators.required]],
   }) 
@@ -32,10 +35,11 @@ export class MemberformComponent implements OnInit {
     }
     return this.registrationForm.get('email').hasError('email') ? 'Not a valid email' : '';
   }
-
   memberData
   memberProfileData
   memberID
+
+
   // create a Member start by submiting the member data followed by the member detail data async | wait
   async onSubmit(){
         //Data to create a member
@@ -55,6 +59,7 @@ export class MemberformComponent implements OnInit {
           "tel":this.registrationForm.value.tel,
           "status":this.registrationForm.value.status,
           "fee_status":this.registrationForm.value.fee_status,
+          "role":this.registrationForm.value.role, 
           "club":this.registrationForm.value.club,   
         }
       this.membersService.createMemberProfile(this.memberProfileData).

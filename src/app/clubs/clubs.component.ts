@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClubsService } from '../shared/services/clubs/clubs.service';
+import { SupervisorService } from 'src/app/shared/services/supervisor/supervisor.service';
 
 export interface clubArray {
   id: any;
@@ -15,7 +16,7 @@ export interface clubArray {
   sub_district: any;
   ward: any;
   street: any;
-  suprvisor: any;
+  supervisor: any;
 }
 
 @Component({
@@ -35,7 +36,7 @@ export class ClubsComponent implements AfterViewInit {
 
   clubValue: clubArray[];
 
-  constructor(private clubsService: ClubsService, private router: Router, private route:ActivatedRoute) {
+  constructor(private clubsService: ClubsService,private SupervisorService: SupervisorService, private router: Router, private route:ActivatedRoute) {
    
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.clubValue);
@@ -66,8 +67,23 @@ export class ClubsComponent implements AfterViewInit {
     this.router.navigateByUrl('/clubs/form');
   }
   // Below are service access methods for CRUID
+  ELEMENT_DATA: clubArray[]=[];
   allClubs(){
-    this.clubsService.allClubs().subscribe(clubs => {this.dataSource.data = clubs, console.log(clubs)});
+    this.clubsService.allClubs().subscribe(clubs =>
+       {this.ELEMENT_DATA = clubs
+
+        for(let i=0;i<this.ELEMENT_DATA.length;i++){ //to return the name of supervisor instead of  the id
+          this.SupervisorService.findClubSupervisor(this.ELEMENT_DATA[i].id).subscribe(
+              data=>{
+                let name:{ first_name: any;last_name: any; }
+                name =  Object.assign({}, ...data)
+                this.ELEMENT_DATA[i].supervisor= name.first_name + " " + name.last_name
+              }
+             )
+        }
+       
+        this.dataSource.data = this.ELEMENT_DATA
+      });
   }
   
   getClub(clubId){
