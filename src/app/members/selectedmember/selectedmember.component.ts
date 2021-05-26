@@ -26,7 +26,11 @@ export interface memberArray {
 })
 export class SelectedmemberComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private membersService: MemberService, private clubsService: ClubsService) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute, 
+    private membersService: MemberService, 
+    private clubsService: ClubsService) { }
 
    // Member details area
    memberId : number;
@@ -73,6 +77,10 @@ export class SelectedmemberComponent implements OnInit {
 
         this.memberData = this.ELEMENT_DATA
     });
+  }
+
+  editMember(id){  
+    this.router.navigate(["/members/form",id]); 
   }
 
 }

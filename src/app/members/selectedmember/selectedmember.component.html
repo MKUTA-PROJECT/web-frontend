@@ -1,6 +1,7 @@
 <div class = "selected-member">
     <div>
-        <app-memberdetail [memberData]="memberData">
+        <app-memberdetail [memberData]="memberData"
+        (editMember)=editMember($event)>
 
         </app-memberdetail>
     </div>

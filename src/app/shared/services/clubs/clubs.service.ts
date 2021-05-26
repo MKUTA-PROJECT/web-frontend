@@ -27,8 +27,8 @@ export class ClubsService {
   createClub(club){
     return this.http.post<any>(this.geturl(), club)
   }
-  updateClub(club){
-
+  updateClub(clubID, data){
+    return this.http.put<any>(this.geturl()+clubID+'/', data)
   }
   deleteClub(clubId){
     

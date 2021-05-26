@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-clubdetails',
@@ -12,4 +12,5 @@ export class ClubdetailsComponent  {
   @Input() clubId : number;
   @Input() clubData: any;
   @Input() supervisorData: any;
+  @Output() editClub = new EventEmitter();
 }

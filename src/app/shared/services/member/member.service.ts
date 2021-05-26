@@ -21,8 +21,16 @@ export class MemberService {
   createMember(member){
     return this.http.post<any>(this.geturl(), member)
   }
+
+  updateMember(member, data){
+    return this.http.put<any>(this.geturl()+member+'/', data)
+  }
   createMemberProfile(memberProfile){
     return this.http.post<any>(this.geturl()+'profile/', memberProfile)
+  }
+
+  updateMemberProfile(memberProfile, data){
+    return this.http.put<any>(this.geturl()+'profile/'+memberProfile+'/', data)
   }
 
   private geturl(){

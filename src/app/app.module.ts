@@ -28,6 +28,7 @@ import { MemberactivitiesComponent } from './members/selectedmember/memberactivi
 import { StaffformComponent } from './staff/staffform/staffform.component';
 import { SelectedstaffComponent } from './staff/selectedstaff/selectedstaff.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { AlertModule } from './shared/_alert';
 
 
 
@@ -62,7 +63,8 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     HttpClientModule,
     ReactiveFormsModule,
     ScrollingModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+    AlertModule,
     
   ],
   providers: [

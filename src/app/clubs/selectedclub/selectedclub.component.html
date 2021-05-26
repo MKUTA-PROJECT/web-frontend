@@ -2,7 +2,8 @@
     <section class="column">
         <div class="row1">
             <app-clubdetails [supervisorData]="supervisorData"
-            [clubData]="clubData" >
+            [clubData]="clubData"
+            (editClub)=editClub($event) >
             </app-clubdetails>
             
         </div>

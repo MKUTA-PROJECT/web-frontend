@@ -28,7 +28,11 @@ export interface memberArray {
 
 export class SelectedclubComponent implements OnInit {
   
-  constructor(private router: Router, private route: ActivatedRoute, private clubsService: ClubsService) { }
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private clubsService: ClubsService
+    ) { }
 
   // chub details area
   clubId : number;
@@ -56,5 +60,9 @@ export class SelectedclubComponent implements OnInit {
   // This is for club members child
   allmembers(){
     this.clubsService.findClubMembers(this.clubId).subscribe(data =>{ this.dataSource = data, console.log(data)});
+  }
+  
+  editClub(id){  
+    this.router.navigate(["/clubs/form",id]); 
   }
 }
