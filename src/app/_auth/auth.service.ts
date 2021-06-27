@@ -43,7 +43,8 @@ export class AuthService {
     }
 
   refreshToken() {
-      return this.http.post<any>(`${environment.base_url}token/refresh/`, {}, { withCredentials: true })
+      
+      return this.http.post<any>(`${environment.base_url}token/refresh/`, {'refresh': this.getRefreshToken()}, { withCredentials: true })
           .pipe(map((user) => {
             localStorage.setItem('loggedInUser', JSON.stringify(user));
             this.userSubject.next(user);
@@ -52,6 +53,17 @@ export class AuthService {
           }));
   }
 
+  private getRefreshToken() {
+   let user = JSON.parse(window.localStorage.getItem('loggedInUser'));
+    console.log(user)
+    if(user){
+        return user['refresh']
+    }
+    else{
+        return ''
+    }
+   
+  }
   // helper methods
 
   private refreshTokenTimeout;

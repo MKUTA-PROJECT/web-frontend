@@ -19,8 +19,8 @@
               Please provide a valid password
             </mat-error>
           </mat-form-field>
-          <button mat-raised-button [disabled]="loginForm.invalid" color="primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          <mat-progress-bar mode="indeterminate" [value]="loading" *ngIf="loading"></mat-progress-bar>
+          <button mat-raised-button [disabled]="loginForm.invalid" color="primary">       
             Login
           </button>
           <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>

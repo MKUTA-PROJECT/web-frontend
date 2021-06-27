@@ -9,13 +9,17 @@ import { User } from './_model/User';
 })
 export class AppComponent {
   user: User;
-
+  isShowing: boolean;
   constructor(private authenticationService: AuthService) {
     this.authenticationService.user.subscribe(x => this.user = x);
   }
 
   logout() {
     this.authenticationService.logout();
+  }
+
+  toggle(){
+    this.isShowing = !this.isShowing;
   }
 
 
