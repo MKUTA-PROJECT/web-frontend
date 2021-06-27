@@ -9,6 +9,8 @@ body {
   display: flex;
 }
 
+
+
 p {
   margin: 16px;
 }
@@ -344,7 +346,7 @@ mat-toolbar {
 
   .title {
     vertical-align: middle;
-    padding-left: 40%;
+    padding-left:20vw;
   
   }
 
@@ -359,6 +361,31 @@ mat-toolbar {
   }
 }
 
+
+
+// mobile 
+@media only screen and (max-width: 370px) and (min-width: 0px) {
+  .mat-drawer.mat-drawer-side        {
+      
+      // padding-top: 10%;
+     display:none;
+    }
+}
+
+// tablet 
+@media only screen and (max-width: 1440px) and (min-width: 370px) {
+ 
+}
+
+// desktop
+@media only screen and (max-width: 1920) and (min-width: 1440) {
+
+  .mat-drawer.mat-drawer-side    {
+      // padding-top: 10%;
+      display:unset;
+    }
+
+}
 
 
 

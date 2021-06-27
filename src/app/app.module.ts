@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +12,7 @@ import { MembersComponent } from './members/members.component';
 import { StaffComponent } from './staff/staff.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ClubsService } from './shared/services/clubs/clubs.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SelectedclubComponent } from './clubs/selectedclub/selectedclub.component';
 import { ClubformComponent } from './clubs/clubform/clubform.component';
@@ -29,6 +29,12 @@ import { StaffformComponent } from './staff/staffform/staffform.component';
 import { SelectedstaffComponent } from './staff/selectedstaff/selectedstaff.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { AlertModule } from './shared/_alert';
+import { TableauModule } from 'ngx-tableau';
+import { LoginComponent } from './login/login.component';
+import { appInitializer } from './_auth/app.initializer';
+import { JwtInterceptor } from './_auth/jwt.interceptor';
+import { AuthService } from './_auth/auth.service';
+import { ErrorInterceptor } from './_auth/error.interceptor';
 
 
 
@@ -53,6 +59,7 @@ import { AlertModule } from './shared/_alert';
     MemberactivitiesComponent,
     StaffformComponent,
     SelectedstaffComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -65,10 +72,15 @@ import { AlertModule } from './shared/_alert';
     ScrollingModule,
     MatTableExporterModule,
     AlertModule,
+    TableauModule
     
   ],
   providers: [
-    ClubsService
+    ClubsService,
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    
   ],
   bootstrap: [AppComponent]
 })

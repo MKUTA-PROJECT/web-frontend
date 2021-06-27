@@ -1,11 +1,11 @@
-<mat-toolbar style="height:38px;" class="toolbar2">
+<mat-toolbar>
     <div>
         <span>Club View</span>
     </div>
     <div >
-        <mat-form-field  appearance="fill" >  <!-- legacy and outline are other directives of appearance-->
+        <mat-form-field  appearance="outline" >  <!-- legacy and outline are other directives of appearance-->
             <input matInput (keyup)="applyFilter($event)" placeholder="Search Club" #input>
-            <mat-icon matPostfix>search</mat-icon>
+            <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
     <Div>

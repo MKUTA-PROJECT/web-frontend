@@ -1,11 +1,11 @@
-<mat-toolbar-row  class="toolbar2">
+<mat-toolbar>
     <div>
-        <h4>Staff View</h4>
+        <span>Staff View</span>
     </div>
     <div >
         <mat-form-field  appearance="outline" >  <!-- legacy and outline are other directives of appearance-->
-            <input matInput (keyup)="applyFilter($event)" placeholder="Search Member" #input style="border-radius:10px; border-width:2px">
-            <mat-icon matPostfix>search</mat-icon>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search Staff" #input>
+            <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
     <Div>
@@ -26,7 +26,7 @@
         </button>
         
     </Div>
-</mat-toolbar-row>
+</mat-toolbar>
 <div class="mat-elevation-z8">
     <table mat-table matTableExporter [dataSource]="dataSource" matSort class="table" #exporter="matTableExporter">
   

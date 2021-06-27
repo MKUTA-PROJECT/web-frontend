@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
-const BASE_URL = 'http://127.0.0.1:8000/'
+const BASE_URL = environment.base_url
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,8 +23,14 @@ export class StaffService {
   createStaff(staff){
     return this.http.post<any>(this.geturl(), staff)
   }
+  updateStaff(staffID, data){
+    return this.http.put<any>(this.geturl()+staffID+'/', data)
+  }
   createStaffProfile(staffProfile){
-    return this.http.post<any>(this.geturl()+'profile/', staffProfile)
+    return this.http.post<any>(this.geturl()+'profile/',staffProfile)
+  }
+  updateStaffProfile(staffProfileID, data){
+    return this.http.put<any>(this.geturl()+'profile/'+staffProfileID+'/', data)
   }
 
   private geturl(){

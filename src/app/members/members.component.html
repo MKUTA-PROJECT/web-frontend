@@ -1,11 +1,11 @@
-<mat-toolbar style="height:38px;" class="toolbar2">
+<mat-toolbar>
     <div>
         <span>Members View</span>
     </div>
     <div >
-        <mat-form-field  appearance="fill" >  <!-- legacy and outline are other directives of appearance-->
-            <input matInput (keyup)="applyFilter($event)" placeholder="Search Member" #input>
-            <mat-icon matPostfix>search</mat-icon>
+        <mat-form-field   appearance="outline" >  <!-- legacy and outline are other directives of appearance-->
+            <input matInput id="rounded" (keyup)="applyFilter($event)" placeholder="Search Member" #input>
+            <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
     <Div>

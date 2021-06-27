@@ -80,7 +80,7 @@ export class MembersComponent implements AfterViewInit {
 
                   if(this.ELEMENT_DATA[i].role == 1){
                     this.ELEMENT_DATA[i].role = 'Chairman'
-                  }
+                  } 
                   else if(this.ELEMENT_DATA[i].role == 2){
                     this.ELEMENT_DATA[i].role = 'Assistant Chairman'
                   }

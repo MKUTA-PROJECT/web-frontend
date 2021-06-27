@@ -12,28 +12,32 @@ import { SelectedmemberComponent } from './members/selectedmember/selectedmember
 import { MemberformComponent } from './members/memberform/memberform.component';
 import { StaffformComponent } from './staff/staffform/staffform.component';
 import { SelectedstaffComponent } from './staff/selectedstaff/selectedstaff.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'activities', component: ActivitiesComponent},
-  { path: 'clubs', component: ClubsComponent},
-    { path: 'clubs/form', component: ClubformComponent},
-    { path: 'clubs/form/:id', component: ClubformComponent},
-    { path: 'clubs/:id', component: SelectedclubComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard]},
+  { path: 'clubs', component: ClubsComponent, canActivate: [AuthGuard]},
+    { path: 'clubs/form', component: ClubformComponent, canActivate: [AuthGuard]},
+    { path: 'clubs/form/:id', component: ClubformComponent, canActivate: [AuthGuard]},
+    { path: 'clubs/:id', component: SelectedclubComponent, canActivate: [AuthGuard]},
     
-  {path: 'home', component: HomeComponent },
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 
-  {path: 'staffs', component: StaffComponent},
-    { path: 'staffs/form', component: StaffformComponent},
-    { path: 'staffs/:id', component: SelectedstaffComponent},
+  {path: 'staffs', component: StaffComponent, canActivate: [AuthGuard]},
+    { path: 'staffs/form', component: StaffformComponent, canActivate: [AuthGuard]},
+    { path: 'staffs/form/:id', component: StaffformComponent, canActivate: [AuthGuard]},
+    { path: 'staffs/:id', component: SelectedstaffComponent, canActivate: [AuthGuard]},
 
 
-  {path: 'members', component: MembersComponent},
-    { path: 'members/form', component: MemberformComponent},
-    { path: 'members/form/:id', component: MemberformComponent},
-    { path: 'members/:id', component: SelectedmemberComponent},
+  {path: 'members', component: MembersComponent, canActivate: [AuthGuard]},
+    { path: 'members/form', component: MemberformComponent, canActivate: [AuthGuard]},
+    { path: 'members/form/:id', component: MemberformComponent, canActivate: [AuthGuard]},
+    { path: 'members/:id', component: SelectedmemberComponent, canActivate: [AuthGuard]},
 
-  {path: 'clients', component: ClientsComponent},
-  { path: '**', redirectTo: '/home' }
+  {path: 'clients', component: ClientsComponent, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

@@ -58,6 +58,21 @@
         </mat-select>
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
+
+      <mat-form-field class="fieldCss" appearance="fill">
+        <mat-label> Password</mat-label>
+        <input type="password" matInput formControlName = "password">
+        <mat-error *ngIf="registrationForm.get('password').hasError('required')"> Password is required </mat-error>
+        <mat-icon matSuffix>password</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="fieldCss" appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput formControlName = "confirmPassword">
+        <mat-error *ngIf="registrationForm.get('password').hasError('required')"> Confirm Password is required </mat-error>
+        <!-- <mat-error *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match></mat-error> -->
+        <mat-icon matSuffix>password</mat-icon>
+      </mat-form-field>
     
       </mat-card-content>
       <mat-card-actions align="start">

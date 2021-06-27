@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './_auth/auth.service';
+import { User } from './_model/User';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  user: User;
+
+  constructor(private authenticationService: AuthService) {
+    this.authenticationService.user.subscribe(x => this.user = x);
+  }
+
+  logout() {
+    this.authenticationService.logout();
+  }
+
+
+
   title = ' MKUTA INFORMATION MANAGEMENT SYSTEM (MIMS)';
   username = 'Simon Machera'
   links = [

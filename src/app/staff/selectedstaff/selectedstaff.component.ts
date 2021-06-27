@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StaffService } from 'src/app/shared/services/staff/staff.service';
 
 export interface staffArray {
@@ -23,7 +23,10 @@ export interface staffArray {
 })
 export class SelectedstaffComponent implements OnInit {
 
-  constructor(private staffsService: StaffService,private route: ActivatedRoute) { }
+  constructor(
+    private router: Router, 
+    private staffsService: StaffService,
+    private route: ActivatedRoute) { }
 
   // staff details area
   staffId : number;
@@ -41,6 +44,10 @@ export class SelectedstaffComponent implements OnInit {
       { this.staffData = Object.assign({}, ...data)
         this.staffData.date_joined = this.staffData.date_joined.split("T")[0]
       });
+  }
+
+  editStaff(id){  
+    this.router.navigate(["/staffs/form",id]); 
   }
   
     

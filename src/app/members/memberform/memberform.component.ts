@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClubsService } from 'src/app/shared/services/clubs/clubs.service';
 import { MemberService } from 'src/app/shared/services/member/member.service';
 import { first } from 'rxjs/operators';
+// import { MustMatch } from '@app/_helpers';
 
 @Component({
   selector: 'app-memberform',
@@ -27,13 +28,20 @@ export class MemberformComponent implements OnInit {
     this.memberID = this.route.snapshot.params['id'];
     this.isAddMode = !this.memberID;
 
-    // Check if it is Create Or Update  ended up here
+    // Check if it is Create Or Update
     if  (!this.isAddMode) {
       this.membersService.findMember(this.memberID).pipe(first())
         .subscribe(x => 
           this.registrationForm.patchValue(Object.assign({}, ...x))        
         )
     }
+
+    // password not required in edit mode
+    const passwordValidators = [Validators.minLength(6)];
+    if (this.isAddMode) {
+        passwordValidators.push(Validators.required);
+    }
+    
     
   }
   // only fill the fields with no default value
@@ -47,7 +55,12 @@ export class MemberformComponent implements OnInit {
     fee_status: ['',[Validators.required]],
     tel: ['',[Validators.required]],
     club: [ '',[Validators.required]],
-  }) 
+    password: ['', [Validators.required, Validators.minLength(6),this.isAddMode ? Validators.required : Validators.nullValidator]],
+    confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator],
+  },{
+    // validator: MustMatch('password', 'confirmPassword')
+  }
+  ) 
 
   getErrorMessage() {
     if (this.registrationForm.get('email').hasError('required')) {
@@ -62,11 +75,11 @@ export class MemberformComponent implements OnInit {
 
   // create a Member start by submiting the member data followed by the member detail data async | wait
 onSubmit(){
-  if (this.isAddMode) {
-    this.createMember()
-  } else {
-    this.updateMember();
-  }
+    if (this.isAddMode) {
+      this.createMember()
+    } else {
+      this.updateMember();
+    }
   }
 private createMember(){
           //Data to create a member
@@ -74,7 +87,8 @@ private createMember(){
             "first_name":this.registrationForm.value.first_name,
             "middle_name":this.registrationForm.value.middle_name,
             "last_name":this.registrationForm.value.last_name,
-            "email":this.registrationForm.value.email,   
+            "email":this.registrationForm.value.email,  
+            "password":this.registrationForm.value.password 
           }
     
       this.membersService.createMember(this.memberData).subscribe(result => {
@@ -104,6 +118,7 @@ private updateMember(){
     "middle_name":this.registrationForm.value.middle_name,
     "last_name":this.registrationForm.value.last_name,
     "email":this.registrationForm.value.email,   
+    "password":this.registrationForm.value.password
    }
 
 

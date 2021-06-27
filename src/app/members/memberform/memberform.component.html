@@ -30,7 +30,7 @@
 
       <mat-form-field appearance="fill" class="fieldCss">
         <mat-label>Email</mat-label>
-        <input matInput  placeholder="pat@example.com" [formControl]= "registrationForm.get('email')" required>
+        <input type="email" matInput  placeholder="pat@example.com" [formControl]= "registrationForm.get('email')" required>
         <mat-error *ngIf="registrationForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
         <mat-icon matSuffix>email</mat-icon>
       </mat-form-field>
@@ -42,10 +42,23 @@
         <mat-error *ngIf="registrationForm.get('tel').hasError('required')"> Phone Number is required </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="fieldCss" appearance="fill">
+      <!-- <mat-form-field class="fieldCss" appearance="fill">
         <mat-label> Role</mat-label>
         <input matInput formControlName = "role">
         <mat-error *ngIf="registrationForm.get('role').hasError('required')"> Role is required </mat-error>
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field> -->
+
+      <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role" required>
+          <mat-option value= 1 >Chairman</mat-option>
+          <mat-option value= 2>Assistant Chairman</mat-option>
+          <mat-option value= 3>Secretary</mat-option>
+          <mat-option value= 4>Assistant Secretary</mat-option>
+          <mat-option value= 5>Tresurer</mat-option>
+          <mat-option value= 6>Member</mat-option>
+        </mat-select>
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
 
@@ -75,6 +88,21 @@
         </mat-select>
         <mat-error *ngIf="registrationForm.get('club').hasError('required')"> Club Name is required </mat-error>
         <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="fieldCss" appearance="fill">
+        <mat-label> Password</mat-label>
+        <input type="password" matInput formControlName = "password">
+        <mat-error *ngIf="registrationForm.get('password').hasError('required')"> Password is required </mat-error>
+        <mat-icon matSuffix>password</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="fieldCss" appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput formControlName = "confirmPassword">
+        <mat-error *ngIf="registrationForm.get('password').hasError('required')"> Confirm Password is required </mat-error>
+        <!-- <mat-error *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match></mat-error> -->
+        <mat-icon matSuffix>password</mat-icon>
       </mat-form-field>
 
       
