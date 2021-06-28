@@ -4,7 +4,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './_material/material.module';
 import { HomeComponent } from './home/home.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { ClubsComponent } from './clubs/clubs.component';
@@ -35,6 +35,7 @@ import { appInitializer } from './_auth/app.initializer';
 import { JwtInterceptor } from './_auth/jwt.interceptor';
 import { AuthService } from './_auth/auth.service';
 import { ErrorInterceptor } from './_auth/error.interceptor';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 
@@ -72,7 +73,10 @@ import { ErrorInterceptor } from './_auth/error.interceptor';
     ScrollingModule,
     MatTableExporterModule,
     AlertModule,
-    TableauModule
+    TableauModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
     
   ],
   providers: [

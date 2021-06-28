@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSortModule,
     MatTooltipModule,
     MatProgressBarModule,
+    MatDatepickerModule,
   ]
 })
 export class MaterialModule {}
