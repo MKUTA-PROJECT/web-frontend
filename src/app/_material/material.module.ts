@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatTooltipModule,
     MatProgressBarModule,
     MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class MaterialModule {}

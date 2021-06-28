@@ -55,7 +55,6 @@ export class AuthService {
 
   private getRefreshToken() {
    let user = JSON.parse(window.localStorage.getItem('loggedInUser'));
-    console.log(user)
     if(user){
         return user['refresh']
     }
