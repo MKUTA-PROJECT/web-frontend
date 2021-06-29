@@ -57,10 +57,21 @@ export class HomeComponent implements OnInit {
         trigger: 'axis'
       },
       title: {
-        text: 'TB Info & Education'
+        text: 'TB Info & Education',
+        left: 'center',
     },
+    toolbox: {
+      show: true,
+      feature: {
+          mark: {show: true},
+          dataView: {show: true, readOnly: false},
+          restore: {show: true},
+          saveAsImage: {show: true}
+      }
+  },
       legend: {
-        data: ['Above 15', 'Below 15']
+        data: ['Above 15', 'Below 15'],
+        top: 'bottom'
       },
       grid: {
         left: 100
@@ -130,33 +141,48 @@ export class HomeComponent implements OnInit {
     };
 
     this.chartOption2= {
-      tooltip : {
-        trigger: 'axis'
-      },
       legend: {
-          top: '5%',
-          left: 'center'
-      },
-      yAxis: {
-        type: 'category',
-        data: ['15 - 19', '20 - 24', '25 - 29', '30+'],
+      top: 'bottom'
+    },
+    tooltip : {
+      trigger: 'item',
+      formatter: function (params) {
         
-        axisLabel: {
-          interval: 0,
-          rotate: 30 //If the label names are too long you can manage this by rotating the label.
-          
+        return `${params.seriesName}<br />
+                ${params.name}: ${params.data.value} (${params.percent}%)<br />
+                ${params.data.name1}: ${params.data.value1}`;
+      }
+    },
+    title: {
+      text: 'Screening Data',
+      left: 'center',
+  },
+    toolbox: {
+        show: true,
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
         }
-      },
-      xAxis: {
-        type: 'value',
-      },
-      series: [
+    },
+    series: [
         {
-          data:[10,10,10,10],
-          type: 'bar',
-          
-        },
-      ],
+            name: 'CLients',
+            type: 'pie',
+            radius: '70%',
+            center: ['50%', '50%'],
+            roseType: 'area',
+            itemStyle: {
+                borderRadius: 8
+            },
+            data: [
+                {value: 40, name: 'Total Screened'},
+                {value: 38, name: 'TB Suspect'},
+                {value: 32, name: 'TB +ve'}, 
+            ]
+        }
+    ]
     };
   }
   

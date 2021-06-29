@@ -1,4 +1,19 @@
+<div class='datePicker'>
+  <mat-form-field class="picker" appearance='fill'>
+    <mat-label>Start Date</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="Choose Start date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
+  <mat-form-field class="picker" appearance='fill'>
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="picker1" placeholder="Choose End date">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+</div>
 <div class="graphs">
   <div echarts [options]="chartOption" [merge]= "dynamicData" class="demo-chart"></div>
   <div echarts [options]="chartOption2" [merge]= "dynamicData1" class="demo-chart-2"></div>
