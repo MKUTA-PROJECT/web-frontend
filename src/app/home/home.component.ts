@@ -5,10 +5,33 @@ import { ClientsService } from '../shared/services/client/clients.service';
 import { InfoService } from '../shared/services/info/info.service';
 import { Info } from '../_model/Info';
 
+import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { Moment } from 'moment';
+import * as moment from 'moment';
+
+export const DateFormats = {
+  parse: {
+      dateInput: ['YYYY-MM-DD']
+  },
+  display: {
+      dateInput: 'YYYY-MM-DD',
+      monthYearLabel: 'MMM YYYY',
+      dateA11yLabel: 'LL',
+      monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [
+
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+      { provide: MAT_DATE_FORMATS, useValue: DateFormats }
+
+  ],
 })
 export class HomeComponent implements OnInit {
 
@@ -24,13 +47,25 @@ export class HomeComponent implements OnInit {
     private infoService: InfoService
   ) { }
 
-  range = new FormGroup({
+  pickerGroup = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
   });
+// Button to filter by date
+  onFilter(){
+    const startDate = new Date(this.pickerGroup.get('start').value ); // Replace event.value with your date value
+    const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
+
+    const endDate = new Date(this.pickerGroup.get('end').value ); // Replace event.value with your date value
+    const formattedendDate = moment(endDate).format("YYYY-MM-DD");
+    
+    this.infoService.findInfo(formattedStartDate, formattedendDate).subscribe(info =>{
+      let results = this.getSumOfInfo(info)
+      this.initialGraphs(results[0], results[1])
+    })
+  }
   ngOnInit(): void {
     this.getInfo()
-    this.initialGraphs()
   }
 
   getClients(){
@@ -39,20 +74,30 @@ export class HomeComponent implements OnInit {
 
   getInfo(){
     this.infoService.allClubs().subscribe(info =>{
-      this.allInfo = info ,
-      console.log(this.allInfo)
+      let results = this.getSumOfInfo(info)
+      this.initialGraphs(results[0], results[1])
     }
      )
   }
+
+  // Fuction to count the number of individual under each age group
+  getSumOfInfo(value : Info[]){
+    let currntInfo = value 
+    let female_below_15: number = currntInfo.map(a => a.female_below_15).reduce(function(a, b){return a + b;});
+    let female_above_15: number = currntInfo.map(a => a.female_above_15).reduce(function(a, b){return a + b;});
+    let male_below_15: number = currntInfo.map(a => a.male_below_15).reduce(function(a, b){return a + b;});
+    let male_above_15: number = currntInfo.map(a => a.male_above_15).reduce(function(a, b){return a + b;});
+
+    return  [[female_above_15,male_above_15], [female_below_15,male_below_15]]
+  }
   
   // Function to plot the initial graph
-  initialGraphs(){
+  initialGraphs(value1, value2){
 
     var seriesLabel = {
       show: true
   }
-  
-    this.chartOption= {
+    let chart1 : EChartsOption = {
       tooltip : {
         trigger: 'axis'
       },
@@ -78,7 +123,7 @@ export class HomeComponent implements OnInit {
     },
       yAxis: {
         type: 'category',
-        data: ['Male', 'Female'],
+        data: ['Female', 'Male'],
       },
       xAxis: {
         type: 'value',
@@ -87,7 +132,7 @@ export class HomeComponent implements OnInit {
         {
             name: 'Above 15',
             type: 'bar',
-            data: [165, 170],
+            data: value1,
             label: seriesLabel,
             markPoint: {
                 symbolSize: 1,
@@ -135,12 +180,19 @@ export class HomeComponent implements OnInit {
             name: 'Below 15',
             type: 'bar',
             label: seriesLabel,
-            data: [150, 105]
+            data: value2
         },
     ],
     };
+    
+    if(!this.chartOption){
+      this.chartOption = chart1
+    }
+    else{
+      this.dynamicData = chart1
+    }
 
-    this.chartOption2= {
+    let chart2 : EChartsOption = {
       legend: {
       top: 'bottom'
     },
@@ -184,70 +236,13 @@ export class HomeComponent implements OnInit {
         }
     ]
     };
+
+    if(!this.chartOption2){
+      this.chartOption2 = chart2
+    }
+    else{
+      this.dynamicData1 = chart2
+    }
   }
   
-    // Function to Update the  graph 1
-    updateGraph1(){
-      this.dynamicData = {
-        tooltip : {
-          trigger: 'axis'
-        },
-        legend: {
-            top: '5%',
-            left: 'center'
-        },
-        yAxis: {
-          type: 'category',
-          data: ['15 - 19', '20 - 24', '25 - 29', '30+'],
-          
-          axisLabel: {
-            interval: 0,
-            rotate: 30 //If the label names are too long you can manage this by rotating the label.
-            
-          }
-        },
-        xAxis: {
-          type: 'value',
-        },
-        series: [
-          {
-            data: '',
-            type: 'bar',
-            
-          },
-        ],
-      }
-    }
-    // Function to update the graph 2
-    updateGraph2(value1, value2){
-      this.dynamicData1 = {
-        tooltip : {
-          trigger: 'axis'
-        },
-        legend: {
-            top: '5%',
-            left: 'center'
-        },
-        yAxis: {
-          type: 'category',
-          data: value1,
-          
-          axisLabel: {
-            interval: 0,
-            rotate: 30 //If the label names are too long you can manage this by rotating the label.
-            
-          }
-        },
-        xAxis: {
-          type: 'value',
-        },
-        series: [
-          {
-            data: value2,
-            type: 'bar',
-            
-          },
-        ],
-      }
-    }
 }

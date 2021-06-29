@@ -15,7 +15,9 @@ export class InfoService {
   allClubs(){
     return this.http.get<any>(this.geturl(),)
   }
-
+  findInfo(start, end){
+    return this.http.get<any>(this.geturl()+start+'/' + end + '/')
+  }
 
   private geturl(){
     return `${BASE_URL}${this.model}`;

@@ -1,18 +1,18 @@
-<div class='datePicker'>
+<div class='datePicker'  [formGroup]="pickerGroup">
   <mat-form-field class="picker" appearance='fill'>
     <mat-label>Start Date</mat-label>
-    <input matInput [matDatepicker]="picker" placeholder="Choose Start date">
+    <input matInput [matDatepicker]="picker" placeholder="Choose Start date" formControlName = "start">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field class="picker" appearance='fill'>
     <mat-label>End Date</mat-label>
-    <input matInput [matDatepicker]="picker1" placeholder="Choose End date">
+    <input matInput [matDatepicker]="picker1" placeholder="Choose End date" formControlName = "end">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
-
+  <button mat-raised-button (click)="onFilter()">Filter</button>
 </div>
 <div class="graphs">
   <div echarts [options]="chartOption" [merge]= "dynamicData" class="demo-chart"></div>
