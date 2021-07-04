@@ -4,6 +4,7 @@ import { EChartsOption } from 'echarts';
 import { ClientsService } from '../shared/services/client/clients.service';
 import { InfoService } from '../shared/services/info/info.service';
 import { Info } from '../_model/Info';
+import { Client } from '../_model/Client';
 
 import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -34,7 +35,6 @@ export const DateFormats = {
   ],
 })
 export class HomeComponent implements OnInit {
-
   chartOption : EChartsOption
   chartOption2 : EChartsOption
   dynamicData
@@ -52,47 +52,65 @@ export class HomeComponent implements OnInit {
     end: new FormControl()
   });
 // Button to filter by date
-  onFilter(){
-    const startDate = new Date(this.pickerGroup.get('start').value ); // Replace event.value with your date value
+  async onFilter(){
+    const startDate = new Date(this.pickerGroup.get('start').value );
     const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
 
-    const endDate = new Date(this.pickerGroup.get('end').value ); // Replace event.value with your date value
+    const endDate = new Date(this.pickerGroup.get('end').value );
     const formattedendDate = moment(endDate).format("YYYY-MM-DD");
     
-    this.infoService.findInfo(formattedStartDate, formattedendDate).subscribe(info =>{
-      let results = this.getSumOfInfo(info)
-      this.initialGraphs(results[0], results[1])
-    })
+    let value1 = await this.infoService.findInfo(formattedStartDate, formattedendDate).toPromise()
+    let value2 = await this.clientService.findClient(formattedStartDate, formattedendDate).toPromise()
+    let info = this.getSumOfInfo(value1)
+    let screened = this.getTotalCount(value2)
+    this.plotGraph(info, screened)
   }
   ngOnInit(): void {
-    this.getInfo()
+    this.initialGraph()
+  }
+  
+
+  async initialGraph(){
+    let info = await this.getInfo();
+    let screened = await this.getClients()
+    this.plotGraph(info, screened)
+
+  }
+// Initial get of Screening Data when the graph is first loaded
+  async getClients() {
+    let values = await this.clientService.allClients().toPromise()
+    let values2 = this.getTotalCount(values)
+    return values2
   }
 
-  getClients(){
+// Initial get of Info when the graph is first loaded
+  async getInfo(){
+    let results1 = await this.infoService.allClubs().toPromise()
+    let results = this.getSumOfInfo(results1)
+    return results
+  }
+// Function to calculate total screened, suspects and +ve
+  getTotalCount(value : Client[]){
+    let clients = value
+    let totalScreened = clients.length
+    let suspect = clients.filter(it => it.tb_suspect == true).length
+    let positive = clients.filter(it => it.tb_status == true).length
+
+    return [totalScreened, suspect, positive]
 
   }
-
-  getInfo(){
-    this.infoService.allClubs().subscribe(info =>{
-      let results = this.getSumOfInfo(info)
-      this.initialGraphs(results[0], results[1])
-    }
-     )
-  }
-
   // Fuction to count the number of individual under each age group
   getSumOfInfo(value : Info[]){
     let currntInfo = value 
-    let female_below_15: number = currntInfo.map(a => a.female_below_15).reduce(function(a, b){return a + b;});
-    let female_above_15: number = currntInfo.map(a => a.female_above_15).reduce(function(a, b){return a + b;});
-    let male_below_15: number = currntInfo.map(a => a.male_below_15).reduce(function(a, b){return a + b;});
-    let male_above_15: number = currntInfo.map(a => a.male_above_15).reduce(function(a, b){return a + b;});
-
+    let female_below_15: number = currntInfo.map(a => a.female_below_15).reduce(function(a, b){return a + b;}, 0);
+    let female_above_15: number = currntInfo.map(a => a.female_above_15).reduce(function(a, b){return a + b;}, 0);
+    let male_below_15: number = currntInfo.map(a => a.male_below_15).reduce(function(a, b){return a + b;}, 0);
+    let male_above_15: number = currntInfo.map(a => a.male_above_15).reduce(function(a, b){return a + b;}, 0);
     return  [[female_above_15,male_above_15], [female_below_15,male_below_15]]
   }
   
   // Function to plot the initial graph
-  initialGraphs(value1, value2){
+  plotGraph(value1, value2){
 
     var seriesLabel = {
       show: true
@@ -132,7 +150,7 @@ export class HomeComponent implements OnInit {
         {
             name: 'Above 15',
             type: 'bar',
-            data: value1,
+            data: value1[0],
             label: seriesLabel,
             markPoint: {
                 symbolSize: 1,
@@ -180,7 +198,7 @@ export class HomeComponent implements OnInit {
             name: 'Below 15',
             type: 'bar',
             label: seriesLabel,
-            data: value2
+            data: value1[1]
         },
     ],
     };
@@ -229,9 +247,9 @@ export class HomeComponent implements OnInit {
                 borderRadius: 8
             },
             data: [
-                {value: 40, name: 'Total Screened'},
-                {value: 38, name: 'TB Suspect'},
-                {value: 32, name: 'TB +ve'}, 
+                {value: value2[0], name: 'Total Screened'},
+                {value: value2[1], name: 'TB Suspect'},
+                {value: value2[2], name: 'TB +ve'}, 
             ]
         }
     ]

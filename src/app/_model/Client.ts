@@ -10,6 +10,7 @@ export interface Client {
     district: any;
     ward: any;
     street: any;
-    circumcision_status: any;
-    validation_status: any;
+    tb_suspect: any;
+    tb_status: any;
+    activity: any;
 }

@@ -16,17 +16,10 @@ export class ClientsService {
     return this.http.get<any>(this.geturl(),)
   }
 
-  findClient(ClientId){
-    return this.http.get<any>(this.geturl()+ClientId+'/')
+  findClient(start, end){
+    return this.http.get<any>(this.geturl()+start+'/' + end + '/')
   }
 
-  createClient(Client){
-   
-  }
-
-  deleteClient(ClientId){
-    
-  }
 
   private geturl(){
     return `${BASE_URL}${this.model}`;
