@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './_auth/auth.service';
+import { Role } from './_model/roles';
 import { User } from './_model/User';
 
 @Component({
@@ -18,20 +19,31 @@ export class AppComponent {
     this.authenticationService.logout();
   }
 
+  help(){
+    console.log("It is happening!!")
+    
+  }
   toggle(){
     this.isShowing = !this.isShowing;
   }
+  get isAdmin() {
+    return this.user && this.user.role === Role.Admin;
+}
 
 
 
   title = ' MKUTA INFORMATION MANAGEMENT SYSTEM (MIMS)';
-  username = ''
-  links = [
-    {path: '/home', icon: 'home', title: 'Home'},
-    {path: '/activities', icon: 'local_activity', title: 'Activities'},
-    {path: 'clubs', icon: 'house_siding', title: 'Clubs'},
-    {path: '/clients', icon: 'people', title: 'Clients'},
-    {path: '/members', icon: 'people', title: 'Members'},
-    {path: '/staffs', icon: 'people_outline', title: 'Staffs'}
-  ];
+  locals : User = JSON.parse(localStorage.getItem('loggedInUser'))
+
+  // Check if the user is logged in and get the name
+  getName(){
+    if(this.locals){
+      return this.locals.name.toUpperCase()
+    }
+    else{
+      return ''
+    }
+  }
+  username = this.getName()
+
 }

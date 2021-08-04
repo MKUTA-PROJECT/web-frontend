@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../_auth/auth.service';
+import { Role } from '../_model/roles';
 
 @Component({
   selector: 'app-login',
@@ -33,10 +34,14 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
   });
 
-    // get return url from route parameters or default to '/home'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-
-  }33
+    if(Role.Club_leader || Role.Chairperson){
+      this.returnUrl = '/staffs';
+      }
+    else{
+       // get return url from route parameters or default to '/home'
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    }
+  }
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }

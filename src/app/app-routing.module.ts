@@ -14,6 +14,7 @@ import { StaffformComponent } from './staff/staffform/staffform.component';
 import { SelectedstaffComponent } from './staff/selectedstaff/selectedstaff.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_auth/auth.guard';
+import { Role } from './_model/roles';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -23,7 +24,7 @@ const routes: Routes = [
     { path: 'clubs/form/:id', component: ClubformComponent, canActivate: [AuthGuard]},
     { path: 'clubs/:id', component: SelectedclubComponent, canActivate: [AuthGuard]},
     
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Member]} },
 
   {path: 'staffs', component: StaffComponent, canActivate: [AuthGuard]},
     { path: 'staffs/form', component: StaffformComponent, canActivate: [AuthGuard]},

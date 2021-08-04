@@ -46,8 +46,13 @@ export class AuthService {
       
       return this.http.post<any>(`${environment.base_url}token/refresh/`, {'refresh': this.getRefreshToken()}, { withCredentials: true })
           .pipe(map((user) => {
-            localStorage.setItem('loggedInUser', JSON.stringify(user));
-            this.userSubject.next(user);
+            //   Get the user from the localstorage and add the new access and refresh token
+            let locals : User = JSON.parse(localStorage.getItem('loggedInUser'))
+            let myUser : User = user
+            locals.access = myUser.access
+            locals.refresh = myUser.refresh
+            localStorage.setItem('loggedInUser', JSON.stringify(locals));
+            this.userSubject.next(locals);
             this.startRefreshTokenTimer();
             return user;
           }));

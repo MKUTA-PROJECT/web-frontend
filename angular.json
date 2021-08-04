@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "mims"
+  "defaultProject": "mims",
+  "cli": {
+    "analytics": false
+  }
 }
