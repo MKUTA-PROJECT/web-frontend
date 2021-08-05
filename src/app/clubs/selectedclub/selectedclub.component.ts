@@ -50,16 +50,16 @@ export class SelectedclubComponent implements OnInit {
   }
 // This is for Club details child
   getClub(){
-    this.clubsService.findClub(this.clubId).subscribe(data => {this.clubData = data,  console.log(data)});
+    this.clubsService.findClub(this.clubId).subscribe(data => {this.clubData = data});
   }
 
   getClubSupervisor(){
-    this.clubsService.findClubSupervisor(this.clubId).subscribe(data => {this.supervisorData = Object.assign({}, ...data),  console.log(Object.assign({}, ...data))});
+    this.clubsService.findClubSupervisor(this.clubId).subscribe(data => this.supervisorData = Object.assign({}, ...data));
   }
 
   // This is for club members child
   allmembers(){
-    this.clubsService.findClubMembers(this.clubId).subscribe(data =>{ this.dataSource = data, console.log(data)});
+    this.clubsService.findClubMembers(this.clubId).subscribe(data =>{ this.dataSource = data});
   }
   
   editClub(id){  

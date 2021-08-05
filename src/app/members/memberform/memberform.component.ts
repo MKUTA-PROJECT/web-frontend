@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClubsService } from 'src/app/shared/services/clubs/clubs.service';
 import { MemberService } from 'src/app/shared/services/member/member.service';
 import { first } from 'rxjs/operators';
-// import { MustMatch } from '@app/_helpers';
+import { MustMatch } from 'src/app/_helpers';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-memberform',
@@ -14,12 +15,14 @@ import { first } from 'rxjs/operators';
 export class MemberformComponent implements OnInit {
   memberID : string;
   isAddMode: boolean;
+  registrationForm : FormGroup;
   
 
   constructor(
     private fb: FormBuilder, 
     private route: ActivatedRoute,
     private router: Router, 
+    private location: Location,
     private membersService: MemberService, 
     private clubsService: ClubsService) { }
 
@@ -41,11 +44,9 @@ export class MemberformComponent implements OnInit {
     if (this.isAddMode) {
         passwordValidators.push(Validators.required);
     }
-    
-    
-  }
-  // only fill the fields with no default value
-  registrationForm = this.fb.group({
+
+      // only fill the fields with no default value
+  this.registrationForm = this.fb.group({
     first_name:  ['',[Validators.required]],
     middle_name: ['',[Validators.required]],
     last_name: ['',[Validators.required]],
@@ -58,9 +59,13 @@ export class MemberformComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6),this.isAddMode ? Validators.required : Validators.nullValidator]],
     confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator],
   },{
-    // validator: MustMatch('password', 'confirmPassword')
+    validator: MustMatch('password', 'confirmPassword')
   }
   ) 
+    
+    
+  }
+
 
   getErrorMessage() {
     if (this.registrationForm.get('email').hasError('required')) {
@@ -105,7 +110,8 @@ private createMember(){
           }
         this.membersService.createMemberProfile(this.memberProfileData).
               subscribe(result => console.log('succeesful created Profile', result)),
-              this.router.navigateByUrl('/members');
+              // this.router.navigateByUrl('/members');
+              this.location.back();
         }
       );
     
@@ -142,7 +148,8 @@ private updateMember(){
         this.membersService.updateMemberProfile(this.memberID,this.memberProfileData)
             .pipe(first())
             .subscribe(result => console.log('succeesful created Profile', result)),
-            this.router.navigateByUrl('/members');
+            // this.router.navigateByUrl('/members');
+            this.location.back();
           
       },
       error: error => {

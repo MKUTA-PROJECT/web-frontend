@@ -24,7 +24,7 @@ const routes: Routes = [
     { path: 'clubs/form/:id', component: ClubformComponent, canActivate: [AuthGuard]},
     { path: 'clubs/:id', component: SelectedclubComponent, canActivate: [AuthGuard]},
     
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Member]} },
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin]} },
 
   {path: 'staffs', component: StaffComponent, canActivate: [AuthGuard]},
     { path: 'staffs/form', component: StaffformComponent, canActivate: [AuthGuard]},

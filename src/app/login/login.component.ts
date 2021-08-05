@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { MemberService } from '../shared/services/member/member.service';
 import { AuthService } from '../_auth/auth.service';
+import { memberArray } from '../_model/member';
 import { Role } from '../_model/roles';
+import { User } from '../_model/User';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +18,14 @@ export class LoginComponent implements OnInit {
   loading = false;
   returnUrl: any;
   error = '';
-
+  member: memberArray
+  user : User = this.authenticationService.userValue
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private authenticationService: AuthService,
     private router: Router,
+    private membersService: MemberService, 
   ) {
      // redirect to home if already logged in
      if (this.authenticationService.userValue) { 
@@ -34,13 +39,24 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
   });
 
-    if(Role.Club_leader || Role.Chairperson){
-      this.returnUrl = '/staffs';
+
+  }
+  async roleUrl(){
+    let locals : User = JSON.parse(localStorage.getItem('loggedInUser'))
+    if ( Role.Chairperson ==  locals.role || Role.Member == locals.role){
+     
+     
+      this.member = Object.assign({}, ...await this.membersService.findMember(locals.id).toPromise())
+    
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/clubs' + '/'+ this.member.club
+      this.router.navigate([this.returnUrl]); 
       }
     else{
        // get return url from route parameters or default to '/home'
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+      this.router.navigate([this.returnUrl]);
     }
+   
   }
 
     // convenience getter for easy access to form fields
@@ -53,7 +69,8 @@ export class LoginComponent implements OnInit {
           .pipe(first())
           .subscribe({
               next: () => {
-                  this.router.navigate([this.returnUrl]);
+                // Go to Specific url depending on role
+                  this.roleUrl()
               },
               error: error => {
                   this.error = error;

@@ -18,5 +18,8 @@ export class ClubmembersComponent  {
       this.router.navigate(['/members', id]);  //this for navigation with id
     }
 
-
+    // Member registration function
+    registerMember(){
+      this.router.navigateByUrl('/members/form');
+    }
 }

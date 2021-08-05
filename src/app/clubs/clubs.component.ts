@@ -5,19 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClubsService } from '../shared/services/clubs/clubs.service';
 import { SupervisorService } from 'src/app/shared/services/supervisor/supervisor.service';
-
-export interface clubArray {
-  id: any;
-  name: any;
-  facility: any;
-  zone: any;
-  region: any;
-  district: any;
-  sub_district: any;
-  ward: any;
-  street: any;
-  supervisor: any;
-}
+import { clubArray } from '../_model/clubArray';
 
 @Component({
   selector: 'app-clubs',
