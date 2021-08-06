@@ -21,7 +21,6 @@ export class MemberformComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private route: ActivatedRoute,
-    private router: Router, 
     private location: Location,
     private membersService: MemberService, 
     private clubsService: ClubsService) { }
@@ -110,7 +109,6 @@ private createMember(){
           }
         this.membersService.createMemberProfile(this.memberProfileData).
               subscribe(result => console.log('succeesful created Profile', result)),
-              // this.router.navigateByUrl('/members');
               this.location.back();
         }
       );
@@ -148,7 +146,6 @@ private updateMember(){
         this.membersService.updateMemberProfile(this.memberID,this.memberProfileData)
             .pipe(first())
             .subscribe(result => console.log('succeesful created Profile', result)),
-            // this.router.navigateByUrl('/members');
             this.location.back();
           
       },

@@ -28,7 +28,11 @@ export class AppComponent {
   }
   get isAdmin() {
     return this.user && this.user.role === Role.Admin;
-}
+  }
+
+  get isMember() {
+    return this.user && this.user.role === Role.Member || this.user && this.user.role === Role.Chairperson;
+  }
 
 
 
@@ -38,12 +42,15 @@ export class AppComponent {
   // Check if the user is logged in and get the name
   getName(){
     if(this.locals){
-      return this.locals.name.toUpperCase()
+      let name = this.locals.name
+      // Usee regex
+      return name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
     }
     else{
       return ''
     }
   }
   username = this.getName()
+  
 
 }
