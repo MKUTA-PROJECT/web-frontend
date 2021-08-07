@@ -36,6 +36,10 @@ import { JwtInterceptor } from './_auth/jwt.interceptor';
 import { AuthService } from './_auth/auth.service';
 import { ErrorInterceptor } from './_auth/error.interceptor';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { MessageComponent } from './message/message.component';
+import { ChatModule } from '@progress/kendo-angular-conversational-ui';
+import { NotificationComponent } from './notification/notification.component';
+
 
 
 
@@ -61,6 +65,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
     StaffformComponent,
     SelectedstaffComponent,
     LoginComponent,
+    MessageComponent,
+    NotificationComponent,
     
   ],
   imports: [
@@ -77,6 +83,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    ChatModule,
     
   ],
   providers: [

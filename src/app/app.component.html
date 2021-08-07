@@ -11,14 +11,14 @@
     </span>
   </span>
   <span class="spacer"></span>
-  <button class="login" mat-mini-fab (click)="help()" color="primary" matBadge="1" matBadgeColor="warn">
+  <button class="login" mat-mini-fab (click)="help()" color="primary" matBadge="1" matBadgeColor="warn" routerLink="/message">
     <mat-icon color="white">message</mat-icon>
   </button>
   <button class="login" mat-mini-fab (click)="help()" [matMenuTriggerFor]="menu" matBadge="3" matBadgeColor="warn" color="primary">
     <mat-icon>notifications</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/notification">
       <mat-icon>person</mat-icon>
       <span>Viongozi wote mnakumbushwa kuwasilisha report ya mwezi wa kumi</span>
     </button>
@@ -93,7 +93,7 @@
         <mat-icon class="mat-18" style="padding-right:20px;" >payments</mat-icon>
         Payments
       </a>
-      <a mat-button class="nav-link" routerLink="">
+      <a mat-button class="nav-link" routerLink="" *ngIf="isMember">
         <mat-icon class="mat-18" style="padding-right:20px;" >person</mat-icon>
         Leadership
       </a>

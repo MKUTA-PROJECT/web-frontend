@@ -15,6 +15,8 @@ import { SelectedstaffComponent } from './staff/selectedstaff/selectedstaff.comp
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { Role } from './_model/roles';
+import { MessageComponent } from './message/message.component';
+import { NotificationComponent } from './notification/notification.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -38,6 +40,8 @@ const routes: Routes = [
     { path: 'members/:id', component: SelectedmemberComponent, canActivate: [AuthGuard]},
 
   {path: 'clients', component: ClientsComponent, canActivate: [AuthGuard]},
+  {path: 'message', component: MessageComponent, canActivate: [AuthGuard]},
+  {path: 'notification', component: NotificationComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/login' }
 ];
 
