@@ -36,7 +36,7 @@ export class AppComponent {
 
 
 
-  title = ' MKUTA INFORMATION MANAGEMENT SYSTEM (MIMS)';
+  title = ' MKUTA NETWORKS INFORMATION MANAGEMENT SYSTEM (MIMS)';
   locals : User = JSON.parse(localStorage.getItem('loggedInUser'))
 
   // Check if the user is logged in and get the name
