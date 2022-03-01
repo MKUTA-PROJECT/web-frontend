@@ -8,7 +8,7 @@ const BASE_URL = environment.base_url
   providedIn: 'root'
 })
 export class ClientsService {
-  private model = 'clients/';       // all Clients
+  private model = 'clients/';       // all Clients 
 
   constructor(private http: HttpClient){}
 

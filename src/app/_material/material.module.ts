@@ -22,6 +22,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   exports: [
@@ -47,7 +49,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatProgressBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule {}

@@ -11,13 +11,13 @@
     </span>
   </span>
   <span class="spacer"></span>
-  <button class="login" mat-mini-fab (click)="help()" color="primary" matBadge="1" matBadgeColor="warn" routerLink="/message">
+  <!-- <button class="login" mat-mini-fab (click)="help()" color="primary" matBadge="1" matBadgeColor="warn" routerLink="/message">
     <mat-icon color="white">message</mat-icon>
   </button>
   <button class="login" mat-mini-fab (click)="help()" [matMenuTriggerFor]="menu" matBadge="3" matBadgeColor="warn" color="primary">
     <mat-icon>notifications</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
+  </button> -->
+  <!-- <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="/notification">
       <mat-icon>person</mat-icon>
       <span>Viongozi wote mnakumbushwa kuwasilisha report ya mwezi wa kumi</span>
@@ -31,7 +31,7 @@
       <mat-icon>event</mat-icon>
       <span>Upcoming Training Dar es salaam</span>
     </button>
-  </mat-menu>
+  </mat-menu> -->
   <button class="login" mat-mini-fab (click)="help()" color="primary">
     <mat-icon>help</mat-icon>
   </button>
@@ -66,7 +66,7 @@
       </a>
       <a mat-button class="nav-link" routerLink="/activities" *ngIf="isAdmin">
         <mat-icon class="mat-18" style="padding-right:20px;">local_activity</mat-icon>
-        Activities
+        Projects
       </a>
       <a mat-button class="nav-link" routerLink="/clubs" *ngIf="isAdmin">
         <mat-icon class="mat-18" style="padding-right:20px;">house_siding</mat-icon>
@@ -89,14 +89,14 @@
         <mat-icon class="mat-18" style="padding-right:20px;" >home</mat-icon>
         Home
       </a>
-      <a mat-button class="nav-link" routerLink="" *ngIf="isMember" >
+      <!-- <a mat-button class="nav-link" routerLink="" *ngIf="isMember" >
         <mat-icon class="mat-18" style="padding-right:20px;" >payments</mat-icon>
         Payments
       </a>
       <a mat-button class="nav-link" routerLink="" *ngIf="isMember">
         <mat-icon class="mat-18" style="padding-right:20px;" >person</mat-icon>
         Leadership
-      </a>
+      </a> -->
     </nav>
   </mat-sidenav>
 

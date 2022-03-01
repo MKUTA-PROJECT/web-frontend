@@ -1,0 +1,12 @@
+<div class = "selected-club">
+        <section class="column1">
+                <app-projectdetails
+                        [projectData]="projectData"
+                        (editProject)=editProject($event)>
+                </app-projectdetails>        
+        </section>
+        <section class="column">
+                <app-projectmembers [dataSource]="dataSource"> </app-projectmembers>           
+        </section>
+    
+</div> 

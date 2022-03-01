@@ -17,10 +17,15 @@ import { AuthGuard } from './_auth/auth.guard';
 import { Role } from './_model/roles';
 import { MessageComponent } from './message/message.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ProjectformComponent } from './activities/projectform/projectform/projectform.component';
+import { SelectedprojectComponent } from './activities/selectedproject/selectedproject/selectedproject.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard]},
+    { path: 'projects/form', component: ProjectformComponent, canActivate: [AuthGuard]},
+    { path: 'projects/form/:id', component: ProjectformComponent, canActivate: [AuthGuard]},
+    { path: 'projects/:id', component: SelectedprojectComponent, canActivate: [AuthGuard]},
   { path: 'clubs', component: ClubsComponent, canActivate: [AuthGuard]},
     { path: 'clubs/form', component: ClubformComponent, canActivate: [AuthGuard]},
     { path: 'clubs/form/:id', component: ClubformComponent, canActivate: [AuthGuard]},

@@ -39,6 +39,11 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { MessageComponent } from './message/message.component';
 import { ChatModule } from '@progress/kendo-angular-conversational-ui';
 import { NotificationComponent } from './notification/notification.component';
+import { ProjectformComponent } from './activities/projectform/projectform/projectform.component';
+import { SelectedprojectComponent } from './activities/selectedproject/selectedproject/selectedproject.component';
+import { ProjectdetailsComponent } from './activities/selectedproject/selectedproject/projectdetails/projectdetails/projectdetails.component';
+import { ProjectmembersComponent } from './activities/selectedproject/selectedproject/projectmembers/projectmembers/projectmembers.component';
+import { DialogComponent } from './activities/selectedproject/selectedproject/projectmembers/projectmembers/dialog/dialog/dialog.component';
 
 
 
@@ -67,6 +72,11 @@ import { NotificationComponent } from './notification/notification.component';
     LoginComponent,
     MessageComponent,
     NotificationComponent,
+    ProjectformComponent,
+    SelectedprojectComponent,
+    ProjectdetailsComponent,
+    ProjectmembersComponent,
+    DialogComponent,
     
   ],
   imports: [
