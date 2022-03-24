@@ -22,7 +22,7 @@ import { SelectedprojectComponent } from './activities/selectedproject/selectedp
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard] },
+  { path: 'projects', component: ActivitiesComponent, canActivate: [AuthGuard] },
   { path: 'projects/form', component: ProjectformComponent, canActivate: [AuthGuard] },
   { path: 'projects/form/:id', component: ProjectformComponent, canActivate: [AuthGuard] },
   { path: 'projects/:id', component: SelectedprojectComponent, canActivate: [AuthGuard] },

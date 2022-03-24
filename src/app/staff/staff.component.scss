@@ -27,4 +27,56 @@ width: 25%;
     font-size: 12px;
   }
   ::ng-deep .small-input.mat-form-field-appearance-outline .mat-form-field-infix .mat-select-arrow{margin-top: 10px;}
-  ::ng-deep .small-input.mat-form-field-appearance-outline .mat-select-empty + .mat-form-field-label-wrapper .mat-form-field-label{margin-top: -0.75em;}
+  ::ng-deep .small-input.mat-form-field-appearance-outline .mat-select-empty + .mat-form-field-label-wrapper .mat-form-field-label{margin-top: -0.75em;
+  }
+
+  h1 {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: rgb(41, 40, 40);
+  }
+
+  .staff-search {
+    display: flex;
+    align-items: center;
+  }
+
+  
+.download {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  margin-left: 20px;
+  background-color: #f2f2f7;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.add-staff {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 200px;
+  margin-left: 20px;
+  background-color: #7048EC;
+  font-weight: bold;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.table {
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}

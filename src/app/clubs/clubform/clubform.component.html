@@ -1,106 +1,118 @@
-    
-<alert></alert>
-<mat-card>
-  <form class="clubRegForm" [formGroup] = "registrationForm" (ngSubmit)="onSubmit()">
+<h1 style="margin-bottom: 20px;">Clubs<span style="font-size: medium; font-weight: normal; color: grey;"> /
+    registration form</span></h1>
+
+
+<form class="clubRegForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <p style="font-size: small; font-weight: normal; color: grey;">Please fill this form to register a club.</p>
+  <mat-card-content>
+
+
+    <mat-form-field class="fieldCss" appearance="fill">
+      <mat-label>Club Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="registrationForm.get('name').hasError('required')"> Club Name is required </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="fieldCss" appearance="fill">
+      <mat-label>Belonging Health Facility Name</mat-label>
+      <input matInput formControlName="health_facility">
+      <mat-error *ngIf="registrationForm.get('health_facility').hasError('required')"> Facility Name is required
+      </mat-error>
+      <mat-icon matSuffix>local_hospital</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="fieldCss">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="registrationForm.get('email')" required>
+      <mat-error *ngIf="registrationForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="fieldCss">
+      <mat-label>Phone number</mat-label>
+      <input matInput type="tel" formControlName="phone" required>
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-error *ngIf="registrationForm.get('phone').hasError('required')"> Phone Number is required </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="fieldCss" appearance="fill">
+      <mat-label> Office</mat-label>
+      <input matInput formControlName="office">
+      <mat-error *ngIf="registrationForm.get('office').hasError('required')"> Office Name is required </mat-error>
+      <mat-icon matSuffix>office</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="fieldCss" appearance="fill">
+      <mat-label> Supervisor</mat-label>
+      <mat-select formControlName="supervisor">
+        <mat-option *ngFor="let supervisor of supervisors | async" [value]="supervisor.id">{{ supervisor.first_name }}
+          {{supervisor.last_name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="registrationForm.get('supervisor').hasError('required')"> Supervisor Name is required
+      </mat-error>
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
     <mat-card-header>
-        <mat-card-title>Club Registration Form</mat-card-title>
-        <mat-card-subtitle>Register a new club with this form</mat-card-subtitle>
+      <mat-card-subtitle>Location</mat-card-subtitle>
+      <mat-icon matSuffix>location_on</mat-icon>
     </mat-card-header>
-    <mat-card-content>
-       
-    
-      <mat-form-field class="fieldCss" appearance="fill">
-        <mat-label>Club Name</mat-label>
-        <input matInput formControlName = "name" >
-        <mat-error *ngIf="registrationForm.get('name').hasError('required')"> Club Name is required </mat-error>
-      </mat-form-field>
 
-      <mat-form-field class="fieldCss" appearance="fill">
-        <mat-label>Belonging Health Facility Name</mat-label>
-        <input matInput formControlName = "health_facility">
-        <mat-error *ngIf="registrationForm.get('health_facility').hasError('required')"> Facility Name is required </mat-error>
-        <mat-icon matSuffix>local_hospital</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="fieldCss">
-        <mat-label>Email</mat-label>
-        <input matInput  placeholder="pat@example.com" [formControl]= "registrationForm.get('email')" required>
-        <mat-error *ngIf="registrationForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
-        <mat-icon matSuffix>email</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="fieldCss">
-        <mat-label>Phone number</mat-label>
-        <input matInput type="tel" formControlName="phone" required>
-        <mat-icon matSuffix>phone</mat-icon>
-        <mat-error *ngIf="registrationForm.get('phone').hasError('required')"> Phone Number is required </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="fieldCss" appearance="fill">
-        <mat-label> Office</mat-label>
-        <input matInput formControlName = "office">
-        <mat-error *ngIf="registrationForm.get('office').hasError('required')"> Office Name is required </mat-error>
-        <mat-icon matSuffix>office</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field class="fieldCss" appearance="fill">
-        <mat-label> Supervisor</mat-label>
-        <mat-select  formControlName="supervisor" >
-          <mat-option *ngFor="let supervisor of supervisors | async"  [value]="supervisor.id">{{ supervisor.first_name }} {{supervisor.last_name}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="registrationForm.get('supervisor').hasError('required')"> Supervisor Name is required </mat-error>
-        <mat-icon matSuffix>person</mat-icon>
-      </mat-form-field>
-      
-      <mat-card-header>
-        <mat-card-subtitle>Location</mat-card-subtitle>
-        <mat-icon matSuffix>location_on</mat-icon>
-     </mat-card-header>
-      
-      <table class="fieldCss" cellspacing="0" >
-        <tr>
-          <td><mat-form-field class="fieldCss" appearance="fill">
+    <table class="fieldCss" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="fieldCss" appearance="fill">
             <mat-label>Zone</mat-label>
             <input matInput placeholder="Ex. lake zone" formControlName="zone">
             <!-- Ended here -->
             <mat-error *ngIf="registrationForm.get('zone').hasError('required')"> Zone is required </mat-error>
-          </mat-form-field ></td>
-          <td><mat-form-field class="fieldCss" appearance="fill">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="fieldCss" appearance="fill">
             <mat-label>Region</mat-label>
             <input matInput placeholder="Ex. Dar es Salaam" formControlName="region">
-         
+
             <mat-error *ngIf="registrationForm.get('region').hasError('required')"> Region is required </mat-error>
-          </mat-form-field ></td>
-          <td><mat-form-field class="fieldCss" appearance="fill">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="fieldCss" appearance="fill">
             <mat-label>District</mat-label>
             <input matInput placeholder="Ex. Kinondoni" formControlName="district">
-            <mat-error *ngIf="registrationForm.get('district').hasError('required')"> District is required </mat-error>
-          </mat-form-field></td>
-        </tr>
-       <tr>
-        <td><mat-form-field class="fieldCss" appearance="fill">
-          <mat-label>CSO</mat-label>
-          <input matInput placeholder="Ex. Kinondoni" formControlName="sub_district">
-        </mat-form-field></td>
-          <td><mat-form-field class="fieldCss" appearance="fill">
+            <mat-error *ngIf="registrationForm.get('district').hasError('required')"> District is required
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="fieldCss" appearance="fill">
+            <mat-label>CSO</mat-label>
+            <input matInput placeholder="Ex. Kinondoni" formControlName="sub_district">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="fieldCss" appearance="fill">
             <mat-label>Ward</mat-label>
             <input matInput placeholder="Ex. Kijitonyama" formControlName="ward">
             <mat-error *ngIf="registrationForm.get('ward').hasError('required')"> Ward is required </mat-error>
-           </mat-form-field>
-          </td>
+          </mat-form-field>
+        </td>
 
-        <td><mat-form-field class="fieldCss" appearance="fill">
-          <mat-label>Street/Village</mat-label>
-          <input matInput placeholder="Ex. Sayansi" formControlName="street">
-          <mat-error *ngIf="registrationForm.get('street').hasError('required')"> Street is required </mat-error>
-        </mat-form-field></td>    
-        </tr>
-      </table>
-      
-      </mat-card-content>
-      <mat-card-actions align="start">
-          <button [disabled]="registrationForm.invalid" type="submit" mat-button color="primary">Submit</button>
-          <button mat-button colour="accent">Cancel</button>  
-      </mat-card-actions>
-    </form>      
-</mat-card>
+        <td>
+          <mat-form-field class="fieldCss" appearance="fill">
+            <mat-label>Street/Village</mat-label>
+            <input matInput placeholder="Ex. Sayansi" formControlName="street">
+            <mat-error *ngIf="registrationForm.get('street').hasError('required')"> Street is required </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+  </mat-card-content>
+  <mat-card-actions align="start">
+    <button [disabled]="registrationForm.invalid" type="submit" mat-button color="primary">Submit</button>
+    <button mat-button colour="accent">Cancel</button>
+  </mat-card-actions>
+</form>

@@ -13,7 +13,7 @@ import { StaffComponent } from './staff/staff.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ClubsService } from './shared/services/clubs/clubs.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectedclubComponent } from './clubs/selectedclub/selectedclub.component';
 import { ClubformComponent } from './clubs/clubform/clubform.component';
 import { ClubdetailsComponent } from './clubs/selectedclub/clubdetails/clubdetails.component';
@@ -44,8 +44,13 @@ import { SelectedprojectComponent } from './activities/selectedproject/selectedp
 import { ProjectdetailsComponent } from './activities/selectedproject/selectedproject/projectdetails/projectdetails/projectdetails.component';
 import { ProjectmembersComponent } from './activities/selectedproject/selectedproject/projectmembers/projectmembers/projectmembers.component';
 import { DialogComponent } from './activities/selectedproject/selectedproject/projectmembers/projectmembers/dialog/dialog/dialog.component';
-
-
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { counterReducer } from './actions/counter.reducer';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -76,7 +81,6 @@ import { DialogComponent } from './activities/selectedproject/selectedproject/pr
     ProjectdetailsComponent,
     ProjectmembersComponent,
     DialogComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -84,15 +88,24 @@ import { DialogComponent } from './activities/selectedproject/selectedproject/pr
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     ScrollingModule,
     MatTableExporterModule,
     AlertModule,
     TableauModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
     ChatModule,
+    StoreModule.forRoot({count: counterReducer}, {}),
+    // StoreModule.forRoot(reducers, {
+    //   metaReducers
+    // }),
   ],
   providers: [
     ClubsService,

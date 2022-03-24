@@ -1,48 +1,25 @@
-<!-- <div>
-        <span>Projects</span>
-    </div> -->
-<div class="header">
-  <div>
-    <h1>Projects</h1>
-  </div>
-  <div class="custom-button" (click)="registerProject()">
-    Add Project +
-  </div>
-</div>
+<h1>Projects</h1>
+
 <!-- project search -->
 <div class="project-search">
   <mat-icon matSuffix class="search-icon">search</mat-icon>
-  <mat-form-field appearance="fill">
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search projects by name, description, date, zone or region" #input>
+  <mat-form-field appearance="standard">
+    <input matInput (keyup)="applyFilter($event)"
+      placeholder="Search projects by name, description, date, zone or region" #input>
   </mat-form-field>
-  <div class="filters">
+  <!-- <div class="filters" (click)="openDialog()">
     <div>Filter</div>
     <mat-icon class="filter-icon" color="accent">filter_list</mat-icon>
-  </div>
+  </div> -->
   <div class="download" (click)="exporter.exportTable('xlsx')">
     <div>Download</div>
     <mat-icon class="filter-icon" color="accent">download</mat-icon>
   </div>
+  <div class="add-project" (click)="registerProject()">
+    <div>Add project</div>
+    <mat-icon class="filter-icon" color="white">add</mat-icon>
+  </div>
 </div>
-<!-- <div>
-
-  <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Filter Projet">
-    <mat-icon color="accent">filter_list</mat-icon>
-
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>Item 1</button>
-    <button mat-menu-item>Item 2</button>
-  </mat-menu>
-  <button mat-button (click)="exporter.exportTable('xlsx')">
-    <mat-icon color="accent">download</mat-icon>
-  </button>
-
-  <button mat-icon-button matTooltip="Add new Project" (click)="registerProject()">
-    <mat-icon color="accent">app_registration</mat-icon>
-  </button>
-
-</div> -->
 
 <div class="table">
   <table mat-table matTableExporter [dataSource]="dataSource" matSort class="table" #exporter="matTableExporter">

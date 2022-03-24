@@ -1,0 +1,20 @@
+<h1 mat-dialog-title style="font-weight: bold;">Filter</h1>
+<div mat-dialog-content>
+  <p>Injected data: {{data.name}}</p>
+  <!-- <mat-form-field> -->
+  <!-- <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select> -->
+  <!-- </mat-form-field> -->
+
+  <p>You selected: {{data.selected}}</p>
+</div>
+<div mat-dialog-actions class="filter-dialog-actions">
+  <!-- <button mat-button (click)="onFilter()" cdkFocusInitial>Cancel</button> -->
+  <button mat-button (click)="onFilter()" cdkFocusInitial>Filter projects</button>
+  <!-- <button mat-button [mat-dialog-close]="data.animal">Ok</button> -->
+</div>

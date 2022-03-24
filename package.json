@@ -27,6 +27,7 @@
     "@angular/platform-browser-dynamic": "~9.1.12",
     "@angular/router": "~9.1.12",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
+    "@ngrx/store": "^9.2.1",
     "@progress/kendo-angular-buttons": "^6.0.0",
     "@progress/kendo-angular-common": "^2.0.0",
     "@progress/kendo-angular-conversational-ui": "^3.0.1",

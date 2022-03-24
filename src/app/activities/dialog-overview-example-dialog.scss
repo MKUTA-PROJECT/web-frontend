@@ -1,0 +1,20 @@
+.filter-dialog-actions {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+  }
+
+  button {
+      cursor: pointer;
+      background-color: #7048EC !important;
+      color: white;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 10px;
+      outline: none;
+      border: none;
+  }

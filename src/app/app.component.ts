@@ -65,7 +65,7 @@ export class AppComponent {
       case Role.Admin:
         return [
           { id: 'menu-item-home', path: 'home', label: 'Home' },
-          { id: 'menu-item-work', path: 'activities', label: 'Projects' },
+          { id: 'menu-item-work', path: 'projects', label: 'Projects' },
           { id: 'menu-item-schedule', path: 'clubs', label: 'Clubs' },
           { id: 'menu-item-settings', path: 'members', label: 'Members' },
           { id: 'menu-item-settings', path: 'staffs', label: 'Staff' },
