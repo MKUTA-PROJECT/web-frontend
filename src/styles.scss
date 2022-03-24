@@ -1,15 +1,28 @@
-html {
-  height: 100%;
+@font-face {
+  font-family: pro-regular;
+  src: url(assets/fonts/sf-pro/SFPRODISPLAYREGULAR.OTF);
 }
 
-body {
+@font-face {
+  font-family: pro-medium;
+  src: url(assets/fonts/sf-pro/SFPRODISPLAYMEDIUM.OTF);
+}
+
+@font-face {
+  font-family: pro-bold;
+  src: url(assets/fonts/sf-pro/SFPRODISPLAYBOLD.OTF);
+}
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: Roboto, sans-serif;
-  height: 100%;
-  display: flex;
+  box-sizing: border-box;
+  font-family: pro-regular;   
 }
-
-
+html,
+body {
+  height: 100%;
+}
 
 p {
   margin: 16px;
@@ -22,11 +35,6 @@ p {
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.container {
-  // margin: 10px;  //this makes the toobar 2 float
-  // flex-wrap: wrap;
 }
 
 .container [class*='col'] {

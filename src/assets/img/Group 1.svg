@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="770.668" height="129.224" viewBox="0 0 770.668 129.224">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #707070;
+      }
+    </style>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(50.126 404.288) rotate(-45)">
+    <path id="Ellipse_1" data-name="Ellipse 1" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.011,10.011,0,0,0,12,2m0-2A12,12,0,1,1,0,12,12,12,0,0,1,12,0Z" transform="translate(692 279)"/>
+    <path id="Rectangle_2" data-name="Rectangle 2" class="cls-1" d="M.5,0h1A.5.5,0,0,1,2,.5V6.268a1,1,0,0,1-1,1H1a1,1,0,0,1-1-1V.5A.5.5,0,0,1,.5,0Z" transform="translate(703.5 302.232)"/>
+    <path id="Path_1" data-name="Path 1" class="cls-1" transform="translate(250.43 -321.32) rotate(31)"/>
+  </g>
+</svg>

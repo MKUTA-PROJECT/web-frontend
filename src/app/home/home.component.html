@@ -1,40 +1,47 @@
-<!-- <div class='datePicker'  [formGroup]="pickerGroup">
-  <mat-form-field class="picker" appearance='fill'>
-    <mat-label>Start Date</mat-label>
-    <input matInput [matDatepicker]="picker" placeholder="Choose Start date" formControlName = "start">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field class="picker" appearance='fill'>
-    <mat-label>End Date</mat-label>
-    <input matInput [matDatepicker]="picker1" placeholder="Choose End date" formControlName = "end">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
-  <button mat-raised-button (click)="onFilter()">Filter</button>
-</div>
-<div class="graphs">
-  <div echarts [options]="chartOption" [merge]= "dynamicData" class="demo-chart"></div>
-  <div echarts [options]="chartOption2" [merge]= "dynamicData1" class="demo-chart-2"></div>
+<!-- <div id="home-container">
+  <div id="pie-chart-section">
+    <p class="chart-title">System Entity Count</p>
+    <div echarts [options]="options" [theme]="theme" id="metric-chart"></div>
+  </div>
+  <div id="entity-selection">a</div>
 </div> -->
 
+<div id="home-container">
+  <!-- <div id="count-section">
+    <div *ngFor="let count of countRegister" class="box">
+      <div>
+        <div class="box-count">{{count.count}} </div>
+        <div class="box-name">{{count.name}} </div>
+      </div>
+    </div>
+  </div> -->
 
-<div class="welcome">
-  <div class="welcome-head">
-      <h2>
-          Welcome to MKUTA NETWORKS INFORMATION MANAGEMENT SYSTEM (MIMS)
-      </h2>
-  </div >
-  <div class="welcome-content">  
-      <h3>
-          <ul>
-              <li>Press Projects to view, add or edit Projects</li>
-              <li>Press Clubs to View the Registered clubs</li>
-              <li>Press Clients to view, add or edit the clients involved in Different Activities</li>
-              <li>Press Members to view, add or edit the Registed members in the system</li>
-              <li>Press Staff to view, add or edit the Staffs in the system</li>
-          </ul>
-      </h3>
+  <h1>Home</h1>
+  <!-- project summary -->
+  <h2>System summary</h2>
+
+  <div class="section2">
+    <div class="pie-chart-section">
+      <p class="chart-title">TB stats</p>
+      <div echarts [options]="options" id="metric-chart"></div>
+    </div>
+    <div class="boxes-right">
+      <div *ngFor="let count of countRegister" class="box2">
+        <div>
+          <div class="box-count2">{{count.count}} </div>
+          <div class="box-name2">{{count.name}} </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div> 
+  <div class="section3">
+    <div class="project-members">
+      <p class="chart-title">Members</p>
+      <echarts class="chart2" [initOpts]="initOpts" [options]="options2"></echarts>
+    </div>
+    <div class="gender-count">
+      <p class="chart-title">Gender Count</p>
+      <echarts class="chart2" [initOpts]="initOptsGender" [options]="genderOptions"></echarts>
+    </div>
+  </div>
+</div>

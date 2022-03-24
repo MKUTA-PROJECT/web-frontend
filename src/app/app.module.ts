@@ -47,7 +47,6 @@ import { DialogComponent } from './activities/selectedproject/selectedproject/pr
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +93,6 @@ import { DialogComponent } from './activities/selectedproject/selectedproject/pr
       echarts: () => import('echarts'),
     }),
     ChatModule,
-    
   ],
   providers: [
     ClubsService,
