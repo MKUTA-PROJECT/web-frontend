@@ -1,17 +1,10 @@
 <div id="app-container">
     <div id="sidebar-container">
         <!-- logo section -->
-        <!-- <div id="sidebar-logo-section">
-            <div id="sidebar-logo-box">
-                <mat-icon id="sidebar-logo">business_center</mat-icon>
-            </div>
-            <div id="sidebar-logo-text">Mkuta</div>
-        </div> -->
         <div id="sidebar-logo">Mk<span style="font-weight: 100;">uta</span></div>
 
         <!-- menu section -->
         <div id="sidebar-menu-section">
-            <!-- <div class="sidebar-menu-section-label-small">Main menu</div> -->
             <div id="sidebar-menu-section-menu-list">
                 <div *ngFor="let menuItem of menuItems">
                     <a [routerLink]= "menuItem.path" routerLinkActive="active-link">{{ menuItem.label }}</a>

@@ -146,13 +146,12 @@
     text-decoration: none;
     transition: 0.2s;
     font-weight: bold;
-    color: rgb(38, 38, 39);
+    color: grey;
   }
 
   .active-link {
-    color: #7047EB;
+    color: rgb(38, 38, 39);
+    font-size: large;
     font-weight: bold;
     font-family: pro-medium;
-    border-left: 5px #7047EB solid;
-    border-start-end-radius: 15px;
   }

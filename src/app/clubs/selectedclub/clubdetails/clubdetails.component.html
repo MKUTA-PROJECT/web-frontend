@@ -1,76 +1,35 @@
-<mat-card >
-        <mat-card-header>
-            <mat-card-title>
-            {{clubData?.name}}
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div class ="side">
-                <div class="column1">
-                    <div class="location">
-                        <div>
-                            <mat-card-subtitle>Location</mat-card-subtitle>
-                        </div>
-                        <div>
-                            <div>
-                                <span>Zone:  {{clubData?.zone}} </span>
-                            </div>
-                            <div>
-                                <span>Region:  {{clubData?.region}} </span>
-                            </div>
-                            <div>
-                                <span>District:  {{clubData?.district}}</span>
-                            </div>
-                            <div>
-                                <span>Sub-District:  {{clubData?.sub_district}} </span>
-                            </div>
-                            <div>
-                                <span>Ward: {{clubData?.ward}}</span>
-                            </div>
-                            <div>
-                                <span>Street: {{clubData?.street}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="supervisor">
-                        <div>
-                            <mat-card-subtitle>Supervisor</mat-card-subtitle>
-                        </div>
-                        <div>
-                            <div>
-                                <span>Name: {{supervisorData?.first_name}} {{supervisorData?.last_name}}</span>
-                            </div>
-                            <div>
-                                <span>Title: {{supervisorData?.position}}</span>
-                            </div>
-                            <div>
-                                <span>Tel: {{supervisorData?.tel}}</span>
-                            </div>
-                            <div>
-                                <span>Email: {{supervisorData?.email}}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column1">
-                    <div>
-                        <span>Health Facility: {{clubData?.health_facility}}</span>
-                    </div>
-                    <div>
-                        <span>Tel: {{clubData?.phone}}</span>
-                    </div>
-                    <div>
-                        <span>Email: {{clubData?.email}}</span>
-                    </div>
-                    <div>
-                        <span>Office: {{clubData?.office}}</span>
-                    </div>
-                </div>
-            </div>
+<h1 style="margin-bottom: 20px;">Clubs<span style="font-size: medium; font-weight: normal; color: grey;"> /
+    details</span></h1>
 
-        </mat-card-content>
-        
-        <mat-card-actions align="start">
-            <button mat-button (click)="editClub.emit(clubData.id)">Edit</button>   
-        </mat-card-actions>
-        </mat-card>
+<div class="name">
+    <div>{{clubData?.name}}</div>
+</div>
+<div class="club-info">
+    <div class="location">
+        <p>LOCATION</p>
+        <p>Zone: <span>{{clubData?.zone}} </span> </p>
+        <p>Region: <span>{{clubData?.region}} </span> </p>
+        <p>District: <span>{{clubData?.district}} </span></ p>
+        <p>Sub-District: <span>{{clubData?.sub_district}} </span> </p>
+        <p>Ward: <span>{{clubData?.ward}}</span></p>
+        <p>Street: <span>{{clubData?.street}}</span></p>
+    </div>
+
+    <div class="supervisor">
+        <p>SUPERVISOR</p>
+        <p>Name: <span> {{supervisorData?.first_name}} {{supervisorData?.last_name}} </span></p>
+        <p>Title: <span> {{supervisorData?.position}}</span></p>
+        <p>Tel: <span> {{supervisorData?.tel}}</span></p>
+        <p>Email: <span> {{supervisorData?.email}}</span></p>
+    </div>
+
+    <div class="facility">
+        <p>FACILITY</p>
+        <p>Health Facility: <span>{{clubData?.health_facility}}</span></p>
+        <p>Tel: <span>{{clubData?.phone}}</span></p>
+        <p>Email: <span>{{clubData?.email}}</span></p>
+        <p>Office: <span>{{clubData?.office}}</span></p>
+    </div>
+</div>
+
+<button (click)="editClub.emit(clubData.id)">Edit</button>

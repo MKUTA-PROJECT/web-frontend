@@ -1,52 +1,37 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>
-        Project Members
-        </mat-card-title>
-        <button mat-icon-button color="primary" (click)="registerMember()">
-          <mat-icon>add_circle_outline</mat-icon>
-        </button>
-    </mat-card-header>
-    <mat-card-content>
-       <cdk-virtual-scroll-viewport coreTableVirtualScroll itemSize="10">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<p class="top">Members</p>
+<button (click)="registerMember()">Add members</button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+  </ng-container>
 
-                     
-            <!-- id Column -->
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef> No. </th> 
-              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-            </ng-container>
-          
-            <!-- Name Column -->
-            <ng-container matColumnDef="first_name">
-              <th mat-header-cell *matHeaderCellDef> First Name </th>
-              <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
-            </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="first_name">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+  </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="middle_name">
-              <th mat-header-cell *matHeaderCellDef> Middle Name</th>
-              <td mat-cell *matCellDef="let row"> {{row.middle_name}} </td>
-            </ng-container>
-          
-            <!-- Name Column -->
-            <ng-container matColumnDef="last_name">
-              <th mat-header-cell *matHeaderCellDef> Last name </th>
-              <td mat-cell *matCellDef="let row"> {{row.last_name}} </td>
-            </ng-container>
-          
-            <!-- Tel Column -->
-            <ng-container matColumnDef="tel">
-              <th mat-header-cell *matHeaderCellDef> Tel </th>
-              <td mat-cell *matCellDef="let row"> {{row.tel}} </td>
-            </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="middle_name">
+    <th mat-header-cell *matHeaderCellDef> Middle Name</th>
+    <td mat-cell *matCellDef="let row"> {{row.middle_name}} </td>
+  </ng-container>
 
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedMember(row.id)"></tr>
-          </table>
-       </cdk-virtual-scroll-viewport>
+  <!-- Name Column -->
+  <ng-container matColumnDef="last_name">
+    <th mat-header-cell *matHeaderCellDef> Last name </th>
+    <td mat-cell *matCellDef="let row"> {{row.last_name}} </td>
+  </ng-container>
 
-    </mat-card-content>
-</mat-card>
+  <!-- Tel Column -->
+  <ng-container matColumnDef="tel">
+    <th mat-header-cell *matHeaderCellDef> Tel </th>
+    <td mat-cell *matCellDef="let row"> {{row.tel}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedMember(row.id)"></tr>
+</table>

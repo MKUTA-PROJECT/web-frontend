@@ -1,4 +1,12 @@
-<mat-card >
+<h1 style="margin-bottom: 20px;">Projects<span style="font-size: medium; font-weight: normal; color: grey;"> /
+        details</span></h1>
+<p>Project name: <span>{{projectData?.name}}</span></p>
+<p>Description: <span>{{projectData?.description}} </span> </p>
+<p>Start Date: <span>{{projectData?.start_date}} </span> </p>
+<p>End Date: <span>{{projectData?.end_date}} </span></p>
+<button (click)="editProject.emit(projectData.id)">Edit</button>
+
+<!-- <mat-card >
     <mat-card-header>
         <mat-card-title>
         {{projectData?.name}}
@@ -34,4 +42,4 @@
     <mat-card-actions align="start">
         <button mat-button (click)="editProject.emit(projectData.id)">Edit</button>   
     </mat-card-actions>
-    </mat-card>
+    </mat-card> -->

@@ -1,4 +1,46 @@
 .example-header-image {
-    background-image: url('src/assets/img/avatar.JPG');
-    background-size: cover;
-  }
+  height: 100px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-image: url("src/assets/img/avatar.JPG");
+  background-size: cover;
+}
+
+.leader-card {
+  width: 100%;
+  margin-top: 30px;
+  margin-left: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f7f6f9;
+}
+
+p {
+  font-weight: bold;
+  color: grey;
+}
+
+span {
+  font-weight: bold;
+  color: rgb(29, 28, 28);
+}
+
+button {
+  margin-top: 10px;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 40px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  border: 1.5px solid #7048ec;
+  background-color: transparent;
+  color: #7048ec;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #7048ec;
+  color: white;
+}

@@ -1,0 +1,36 @@
+h1 {
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: rgb(41, 40, 40);
+}
+
+span {
+  font-weight: bold;
+  color: rgb(37, 37, 37);
+}
+
+p {
+  font-weight: bold;
+  color: grey;
+}
+
+button {
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 40px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  border: 1.5px solid #7048ec;
+  background-color: transparent;
+  color: #7048ec;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #7048ec;
+  color: white;
+}
