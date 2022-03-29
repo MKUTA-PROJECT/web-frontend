@@ -15,8 +15,8 @@ import { memberArray } from '../_model/member';
 })
 export class MembersComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'first_name', 'middle_name', 'last_name','club','role','tel',
-                               'email', 'status', 'fee_status',];
+  displayedColumns: string[] = ['id', 'first_name', 'middle_name', 'last_name','club','sex',
+                                'status'];
   dataSource: MatTableDataSource<memberArray>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -57,36 +57,17 @@ export class MembersComponent implements AfterViewInit {
       this.memberService.allMembers().subscribe(members => 
         {this.ELEMENT_DATA = members
 
-          //to return the name of Club and Role instead of  the id
+          // to return the name of Club and Role instead of  the id
           for(let i=0;i<this.ELEMENT_DATA.length;i++){ 
             this.clubsService.findClub(this.ELEMENT_DATA[i].club).subscribe(
                 data=>{
                   let name:{ name: any; role:any; }
                   name =  data
                   this.ELEMENT_DATA[i].club= name.name
-
-                  if(this.ELEMENT_DATA[i].role == 1){
-                    this.ELEMENT_DATA[i].role = 'Chairman'
-                  } 
-                  else if(this.ELEMENT_DATA[i].role == 2){
-                    this.ELEMENT_DATA[i].role = 'Assistant Chairman'
-                  }
-                  else if(this.ELEMENT_DATA[i].role == 3){
-                    this.ELEMENT_DATA[i].role = 'Secrtary'
-                  }
-                  else if(this.ELEMENT_DATA[i].role == 4){
-                    this.ELEMENT_DATA[i].role = 'Assistant Secrtary'
-                  }
-                  else if(this.ELEMENT_DATA[i].role == 5){
-                    this.ELEMENT_DATA[i].role = 'Treasurer'
-                  }
-                  else {
-                    this.ELEMENT_DATA[i].role = 'Member'
-                  }
                 }
                )
           }
-         
+         console.log(this.ELEMENT_DATA)
           this.dataSource.data = this.ELEMENT_DATA
         });
     }

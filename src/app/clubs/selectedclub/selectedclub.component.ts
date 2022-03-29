@@ -50,7 +50,7 @@ export class SelectedclubComponent implements OnInit {
   }
 // This is for Club details child
   getClub(){
-    this.clubsService.findClub(this.clubId).subscribe(data => {this.clubData = data});
+    this.clubsService.findClub(this.clubId).subscribe(data => {this.clubData = data, console.log(data)});
   }
 
   getClubSupervisor(){
@@ -59,7 +59,8 @@ export class SelectedclubComponent implements OnInit {
 
   // This is for club members child
   allmembers(){
-    this.clubsService.findClubMembers(this.clubId).subscribe(data =>{ this.dataSource = data});
+    this.clubsService.findClubMembers(this.clubId).subscribe(data =>{ this.dataSource = data, console.log(data)});
+    
   }
   
   editClub(id){  

@@ -60,15 +60,15 @@ export class ClubsComponent implements AfterViewInit {
     this.clubsService.allClubs().subscribe(clubs =>
        {this.ELEMENT_DATA = clubs
 
-        for(let i=0;i<this.ELEMENT_DATA.length;i++){ //to return the name of supervisor instead of  the id
-          this.SupervisorService.findClubSupervisor(this.ELEMENT_DATA[i].id).subscribe(
-              data=>{
-                let name:{ first_name: any;last_name: any; }
-                name =  Object.assign({}, ...data)
-                this.ELEMENT_DATA[i].supervisor= name.first_name + " " + name.last_name
-              }
-             )
-        }
+        // for(let i=0;i<this.ELEMENT_DATA.length;i++){ //to return the name of supervisor instead of  the id
+        //   this.SupervisorService.findClubSupervisor(this.ELEMENT_DATA[i].id).subscribe(
+        //       data=>{
+        //         let name:{ first_name: any;last_name: any; }
+        //         name =  Object.assign({}, ...data)
+        //         this.ELEMENT_DATA[i].supervisor= name.first_name + " " + name.last_name
+        //       }
+        //      )
+        // }
        
         this.dataSource.data = this.ELEMENT_DATA
       });
@@ -82,5 +82,5 @@ export class ClubsComponent implements AfterViewInit {
     return this.clubsService.createClub;
   }
 
-
+ 
 }

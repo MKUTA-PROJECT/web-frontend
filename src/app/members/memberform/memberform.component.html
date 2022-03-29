@@ -28,58 +28,59 @@
       <mat-icon matSuffix>local_hospital</mat-icon>
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Sex</mat-label>
+      <mat-select formControlName="sex" required>
+        <mat-option value="1">Male</mat-option>
+        <mat-option value="2">Female</mat-option>
+      </mat-select>
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
     <mat-form-field appearance="fill" class="fieldCss">
       <mat-label>Email</mat-label>
       <input type="email" matInput placeholder="pat@example.com" [formControl]="registrationForm.get('email')" required>
       <mat-error *ngIf="registrationForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
       <mat-icon matSuffix>email</mat-icon>
     </mat-form-field>
-
+ 
     <mat-form-field appearance="fill" class="fieldCss">
       <mat-label>Phone number</mat-label>
-      <input matInput type="tel" formControlName="tel" required>
+      <input matInput type="tel" formControlName="phone" required>
       <mat-icon matSuffix>phone</mat-icon>
-      <mat-error *ngIf="registrationForm.get('tel').hasError('required')"> Phone Number is required </mat-error>
+      <mat-error *ngIf="registrationForm.get('phone').hasError('required')"> Phone Number is required </mat-error>
     </mat-form-field>
 
-    <!-- <mat-form-field class="fieldCss" appearance="fill">
-        <mat-label> Role</mat-label>
-        <input matInput formControlName = "role">
-        <mat-error *ngIf="registrationForm.get('role').hasError('required')"> Role is required </mat-error>
-        <mat-icon matSuffix>person</mat-icon>
-      </mat-form-field> -->
 
-    <mat-form-field appearance="fill">
-      <mat-label>Role</mat-label>
-      <mat-select formControlName="role" required>
-        <mat-option value=1>Chairman</mat-option>
-        <mat-option value=2>Assistant Chairman</mat-option>
-        <mat-option value=3>Secretary</mat-option>
-        <mat-option value=4>Assistant Secretary</mat-option>
-        <mat-option value=5>Tresurer</mat-option>
-        <mat-option value=6>Member</mat-option>
+    <mat-form-field class="fieldCss" appearance="fill">
+      <mat-label> Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let role of roles | async" [value]="role.id">{{ role.name }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="registrationForm.get('role').hasError('required')"> Role is required
+      </mat-error>
       <mat-icon matSuffix>person</mat-icon>
-    </mat-form-field>
+    </mat-form-field> 
 
     <mat-form-field appearance="fill">
       <mat-label>Status</mat-label>
       <mat-select formControlName="status" required>
-        <mat-option value="Active">Active</mat-option>
-        <mat-option value="Domant">Domant</mat-option>
-        <mat-option value="Dead">Dead</mat-option>
+        <mat-option value="1">Active</mat-option>
+        <mat-option value="2">Domant</mat-option>
+        <mat-option value="3">Dead</mat-option>
       </mat-select>
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Fee Payement</mat-label>
-      <mat-select formControlName="fee_status" required>
-        <mat-option value="Paid">Paid</mat-option>
-        <mat-option value="Not Paid">Not Paid</mat-option>
+      <mat-label>Is Post TB</mat-label>
+      <mat-select formControlName="is_post_tb" required>
+        <mat-option value="True">Yes</mat-option>
+        <mat-option value="False">No</mat-option>
       </mat-select>
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
+
 
     <mat-form-field class="fieldCss" appearance="fill">
       <mat-label> Club</mat-label>

@@ -6,6 +6,8 @@ import { MemberService } from 'src/app/shared/services/member/member.service';
 import { first } from 'rxjs/operators';
 import { MustMatch } from 'src/app/_helpers';
 import { Location } from '@angular/common';
+import { LookupService } from 'src/app/shared/services/lookup/lookup.service';
+import { memberArray } from 'src/app/_model/member';
 
 @Component({
   selector: 'app-memberform',
@@ -22,21 +24,36 @@ export class MemberformComponent implements OnInit {
     private fb: FormBuilder, 
     private route: ActivatedRoute,
     private location: Location,
+    private LookupService: LookupService,
     private membersService: MemberService, 
     private clubsService: ClubsService) { }
 
+  ELEMENT_DATA: memberArray;
+  memberProfile:any;
   clubs = this.clubsService.allClubs()
+  roles = this.LookupService.allMemberRoles()
   ngOnInit(): void {
     this.memberID = this.route.snapshot.params['id'];
     this.isAddMode = !this.memberID;
 
+    
     // Check if it is Create Or Update
     if  (!this.isAddMode) {
       this.membersService.findMember(this.memberID).pipe(first())
         .subscribe(x => 
-          this.registrationForm.patchValue(Object.assign({}, ...x))        
-        )
+          {this.ELEMENT_DATA = x,
+          // Profie data
+          this.membersService.getMemberProfile(this.ELEMENT_DATA.id).subscribe(profile =>{
+            this.memberProfile = profile;
+            this.ELEMENT_DATA.club = this.memberProfile.club;
+            this.ELEMENT_DATA.role = this.memberProfile.role;
+            this.ELEMENT_DATA.sex =String(this.ELEMENT_DATA.sex)
+            console.log(this.ELEMENT_DATA)
+
+            this.registrationForm.patchValue(this.ELEMENT_DATA)        
+          })})
     }
+
 
     // password not required in edit mode
     const passwordValidators = [Validators.minLength(6)];
@@ -52,8 +69,8 @@ export class MemberformComponent implements OnInit {
     email: ['',[Validators.required,Validators.email,]],
     role: ['',[Validators.required]],
     status: ['',[Validators.required]],
-    fee_status: ['',[Validators.required]],
-    tel: ['',[Validators.required]],
+    is_post_tb: ['',[Validators.required]],
+    phone: ['',[Validators.required]],
     club: [ '',[Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6),this.isAddMode ? Validators.required : Validators.nullValidator]],
     confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator],
@@ -92,7 +109,9 @@ private createMember(){
             "middle_name":this.registrationForm.value.middle_name,
             "last_name":this.registrationForm.value.last_name,
             "email":this.registrationForm.value.email,  
-            "password":this.registrationForm.value.password 
+            "sex": this.registrationForm.value.sex,
+            "phone": this.registrationForm.value.phone,
+            "password":this.registrationForm.value.password, 
           }
     
       this.membersService.createMember(this.memberData).subscribe(result => {
@@ -101,13 +120,12 @@ private createMember(){
           //Data to create a member Profile inside the subscribe funx of create member
           this.memberProfileData= {
             "user": this.memberID,
-            "tel":this.registrationForm.value.tel,
             "status":this.registrationForm.value.status,
-            "fee_status":this.registrationForm.value.fee_status,
-            "role":this.registrationForm.value.role, 
-            "club":this.registrationForm.value.club,   
+            "role":parseInt(this.registrationForm.value.role), 
+            "club":this.registrationForm.value.club,  
+            "is_post_tb": this.registrationForm.value.is_post_tb 
           }
-        this.membersService.createMemberProfile(this.memberProfileData).
+        this.membersService.createMemberProfile(this.memberID,this.memberProfileData).
               subscribe(result => console.log('succeesful created Profile', result)),
               this.location.back();
         }
@@ -141,7 +159,7 @@ private updateMember(){
             "status":this.registrationForm.value.status,
             "fee_status":this.registrationForm.value.fee_status,
             "role":this.registrationForm.value.role, 
-            "club":this.registrationForm.value.club,   
+            "club":this.registrationForm.value.club,    
           }
         this.membersService.updateMemberProfile(this.memberID,this.memberProfileData)
             .pipe(first())

@@ -21,6 +21,7 @@ export class SelectedmemberComponent implements OnInit {
    // Member details area
    memberId : number;
    memberData: any;
+   memberProfile: any;
   
 
   ngOnInit(): void {
@@ -32,34 +33,36 @@ export class SelectedmemberComponent implements OnInit {
   ELEMENT_DATA: memberArray;
   getMember(){
     this.membersService.findMember(this.memberId).subscribe(data => 
-      { this.ELEMENT_DATA = Object.assign({}, ...data)
+      { 
+        this.ELEMENT_DATA = data,
+          // Profie data
+          this.membersService.getMemberProfile(this.ELEMENT_DATA.id).subscribe(profile =>{
+            this.memberProfile = profile;
+            this.ELEMENT_DATA.club = this.memberProfile.club;
+            this.ELEMENT_DATA.role = this.memberProfile.role;
 
-          this.clubsService.findClub(this.ELEMENT_DATA.club).subscribe(club=>{
-            let clubname: {name: any}
-            clubname = club
-            this.ELEMENT_DATA.club = clubname.name
+            // Sex
+            if (this.ELEMENT_DATA.sex ===1){
+              this.ELEMENT_DATA.sex = "Male"
+            }
+            else {
+              this.ELEMENT_DATA.sex = "Female"
+            }
+            console.log(this.ELEMENT_DATA)
+
+            // Status
+            if (this.memberProfile.status ==1){
+              this.ELEMENT_DATA.status ="Active"
+            }
+            else if (this.memberProfile.status ==2){
+              this.ELEMENT_DATA.status="Domant"
+            }
+            else if (this.memberProfile.status ==3){
+              this.ELEMENT_DATA.status="Dead"
+            }
           })
 
           this.ELEMENT_DATA.date_joined = this.ELEMENT_DATA.date_joined.split("T")[0];
-
-          if(this.ELEMENT_DATA.role == 1){
-            this.ELEMENT_DATA.role = 'Chairman'
-          }
-          else if(this.ELEMENT_DATA.role == 2){
-            this.ELEMENT_DATA.role = 'Assistant Chairman'
-          }
-          else if(this.ELEMENT_DATA.role == 3){
-            this.ELEMENT_DATA.role = 'Secrtary'
-          }
-          else if(this.ELEMENT_DATA.role == 4){
-            this.ELEMENT_DATA.role = 'Assistant Secrtary'
-          }
-          else if(this.ELEMENT_DATA.role == 5){
-            this.ELEMENT_DATA.role = 'Treasurer'
-          }
-          else {
-            this.ELEMENT_DATA.role = 'Member'
-          }
 
         this.memberData = this.ELEMENT_DATA
     });

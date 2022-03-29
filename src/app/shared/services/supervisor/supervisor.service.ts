@@ -8,8 +8,8 @@ const BASE_URL = environment.base_url
   providedIn: 'root'
 })
 export class SupervisorService {
-  private model = 'clubs/supervisor/';       // all suprvisors and post supervisor
-  private model2 ='clubs/'
+  private model = 'supervisor/';       // all suprvisors and post supervisor
+
   constructor(private http: HttpClient) { }
 
   allSupervisors(){
@@ -29,7 +29,7 @@ export class SupervisorService {
     
   }
   findClubSupervisor(clubId){
-    return this.http.get<any>(`${BASE_URL}${this.model2}`+clubId+'/supervisor/')
+    // return this.http.get<any>(`${BASE_URL}${this.model2}`+clubId+'/supervisor/')
   }
 
   private geturl(){

@@ -9,7 +9,8 @@ export interface memberArray {
     role: any;
     status: any;
     fee_status: any;
-    tel: any;
+    phone: any;
     timestamp: any;
     club: any;
+    sex:any;
   }
