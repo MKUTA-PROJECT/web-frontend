@@ -15,6 +15,10 @@ export class LookupService {
     return this.http.get<any>(this.geturl() + 'memberroles/')
   }
 
+  getMemberRole(roleId){
+    return this.http.get<any>(this.geturl() + 'memberroles/'+roleId+'/')
+  }
+
 
   private geturl(){
     return `${BASE_URL}${this.model}`;

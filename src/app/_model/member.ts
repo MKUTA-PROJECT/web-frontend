@@ -8,7 +8,7 @@ export interface memberArray {
     date_joined: any;
     role: any;
     status: any;
-    fee_status: any;
+    is_post_tb: any;
     phone: any;
     timestamp: any;
     club: any;

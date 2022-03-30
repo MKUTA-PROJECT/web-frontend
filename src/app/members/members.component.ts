@@ -55,19 +55,42 @@ export class MembersComponent implements AfterViewInit {
     ELEMENT_DATA: memberArray[]=[];
     allMembers(){
       this.memberService.allMembers().subscribe(members => 
-        {this.ELEMENT_DATA = members
+        {this.ELEMENT_DATA = members;
+          console.log(this.ELEMENT_DATA)
 
           // to return the name of Club and Role instead of  the id
           for(let i=0;i<this.ELEMENT_DATA.length;i++){ 
-            this.clubsService.findClub(this.ELEMENT_DATA[i].club).subscribe(
+            this.memberService.getMemberProfile(this.ELEMENT_DATA[i].id).subscribe(
                 data=>{
-                  let name:{ name: any; role:any; }
+                  let name:{ club: any; status:any; }
                   name =  data
-                  this.ELEMENT_DATA[i].club= name.name
+                  this.ELEMENT_DATA[i].club= name.club;
+                  this.ELEMENT_DATA[i].status= name.status;
+
+
+                    // Sex
+                  if (this.ELEMENT_DATA[i].sex ===1){
+                    this.ELEMENT_DATA[i].sex = "Male"
+                  }
+                  else {
+                    this.ELEMENT_DATA[i].sex = "Female"
+                  }
+                  console.log(this.ELEMENT_DATA[i])
+                  
+                  // Status
+                  if (this.ELEMENT_DATA[i].status ==1){
+                    this.ELEMENT_DATA[i].status ="Active"
+                  }
+                  else if (this.ELEMENT_DATA[i].status ==2){
+                    this.ELEMENT_DATA[i].status="Domant"
+                  }
+                  else if (this.ELEMENT_DATA[i].status ==3){
+                    this.ELEMENT_DATA[i].status="Dead"
+                  }
                 }
                )
           }
-         console.log(this.ELEMENT_DATA)
+        //  console.log(this.ELEMENT_DATA)
           this.dataSource.data = this.ELEMENT_DATA
         });
     }

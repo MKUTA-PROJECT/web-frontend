@@ -21,7 +21,6 @@ export class SelectedmemberComponent implements OnInit {
    // Member details area
    memberId : number;
    memberData: any;
-   memberProfile: any;
   
 
   ngOnInit(): void {
@@ -34,13 +33,8 @@ export class SelectedmemberComponent implements OnInit {
   getMember(){
     this.membersService.findMember(this.memberId).subscribe(data => 
       { 
-        this.ELEMENT_DATA = data,
-          // Profie data
-          this.membersService.getMemberProfile(this.ELEMENT_DATA.id).subscribe(profile =>{
-            this.memberProfile = profile;
-            this.ELEMENT_DATA.club = this.memberProfile.club;
-            this.ELEMENT_DATA.role = this.memberProfile.role;
-
+        this.ELEMENT_DATA = data;
+  
             // Sex
             if (this.ELEMENT_DATA.sex ===1){
               this.ELEMENT_DATA.sex = "Male"
@@ -49,18 +43,17 @@ export class SelectedmemberComponent implements OnInit {
               this.ELEMENT_DATA.sex = "Female"
             }
             console.log(this.ELEMENT_DATA)
-
+            
             // Status
-            if (this.memberProfile.status ==1){
+            if (this.ELEMENT_DATA.status ==1){
               this.ELEMENT_DATA.status ="Active"
             }
-            else if (this.memberProfile.status ==2){
+            else if (this.ELEMENT_DATA.status ==2){
               this.ELEMENT_DATA.status="Domant"
             }
-            else if (this.memberProfile.status ==3){
+            else if (this.ELEMENT_DATA.status ==3){
               this.ELEMENT_DATA.status="Dead"
             }
-          })
 
           this.ELEMENT_DATA.date_joined = this.ELEMENT_DATA.date_joined.split("T")[0];
 

@@ -41,17 +41,42 @@ export class MemberformComponent implements OnInit {
     if  (!this.isAddMode) {
       this.membersService.findMember(this.memberID).pipe(first())
         .subscribe(x => 
-          {this.ELEMENT_DATA = x,
+          {this.ELEMENT_DATA = x;
           // Profie data
-          this.membersService.getMemberProfile(this.ELEMENT_DATA.id).subscribe(profile =>{
-            this.memberProfile = profile;
-            this.ELEMENT_DATA.club = this.memberProfile.club;
-            this.ELEMENT_DATA.role = this.memberProfile.role;
-            this.ELEMENT_DATA.sex =String(this.ELEMENT_DATA.sex)
+            // Sex
+            if (this.ELEMENT_DATA.sex ==1){
+              this.ELEMENT_DATA.sex = "1"
+            }
+            else if (this.ELEMENT_DATA.sex ==2){
+              this.ELEMENT_DATA.sex = "2"
+            }
             console.log(this.ELEMENT_DATA)
 
+            // Is post TB
+            if (this.ELEMENT_DATA.is_post_tb ==true){
+              this.ELEMENT_DATA.is_post_tb = "True"
+            }
+            else if (this.ELEMENT_DATA.is_post_tb ==false){
+              this.ELEMENT_DATA.is_post_tb = "False"
+            }
+            console.log(this.ELEMENT_DATA)
+            
+            // Status
+            if (this.ELEMENT_DATA.status ==1){
+              this.ELEMENT_DATA.status ="1"
+            }
+            else if (this.ELEMENT_DATA.status ==2){
+              this.ELEMENT_DATA.status="2"
+            }
+            else if (this.ELEMENT_DATA.status ==3){
+              this.ELEMENT_DATA.status="3"
+            }
+              this.LookupService.getMemberRole(this.ELEMENT_DATA.role).subscribe(roles => {
+                this.ELEMENT_DATA.role = Object.assign({}, ...roles.map((x) => ({[x.id]: x.name})));
+              })
+
             this.registrationForm.patchValue(this.ELEMENT_DATA)        
-          })})
+          })
     }
 
 
@@ -69,6 +94,7 @@ export class MemberformComponent implements OnInit {
     email: ['',[Validators.required,Validators.email,]],
     role: ['',[Validators.required]],
     status: ['',[Validators.required]],
+    sex: ['',[Validators.required]],
     is_post_tb: ['',[Validators.required]],
     phone: ['',[Validators.required]],
     club: [ '',[Validators.required]],
