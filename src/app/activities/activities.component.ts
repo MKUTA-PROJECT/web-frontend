@@ -53,6 +53,7 @@ export class ActivitiesComponent implements AfterViewInit {
   displayedColumns: string[] = [
     'id',
     'name',
+    'funder',
     'description',
     'start_date',
     'end_date',

@@ -1,4 +1,5 @@
-export const tbStats = {
+export const tbStats=(a,b)=> {
+  return {
     tooltip: {
       trigger: 'item',
       formatter: '{c} {b} patients',
@@ -11,9 +12,10 @@ export const tbStats = {
         radius: [30, 120],
         roseType: 'pie-chart',
         data: [
-          { value: 126, name: 'Post TB' },
-          { value: 265, name: 'Non-TB' },
+          { value: a, name: 'Post TB' },
+          { value: b, name: 'Non-TB' },
         ],
       },
     ],
   };
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './_auth/auth.service';
 import { Role } from './_model/roles';
 import { User } from './_model/User';
@@ -18,11 +19,13 @@ export class AppComponent {
     label: string;
   }[];
 
-  isShowing: boolean;
-  constructor(private authenticationService: AuthService) {
+  isShowing: boolean=false;
+  
+  constructor(private authenticationService: AuthService, private router: Router) {
     this.authenticationService.user.subscribe(x => this.user = x);
+    console.log(this.router.url)
   }
-
+  
   logout() {
     this.authenticationService.logout();
   }

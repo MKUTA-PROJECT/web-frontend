@@ -20,14 +20,14 @@ export class MemberService {
   }
 
   createMember(member){
-    return this.http.post<any>(this.geturl(), member)
+    return this.http.post<any>(BASE_URL + 'auth/register/', member)
   }
 
   updateMember(member, data){
     return this.http.put<any>(this.geturl()+member+'/', data)
   }
   createMemberProfile(memberID, data){
-    return this.http.post<any>(this.geturl()+memberID+'profile/', data)
+    return this.http.post<any>(this.geturl()+memberID+'/profile/', data)
   }
 
   getMemberProfile(memberProfile){

@@ -31,7 +31,8 @@ export class SelectedclubComponent implements OnInit {
   constructor(
     private router: Router, 
     private route: ActivatedRoute, 
-    private clubsService: ClubsService
+    private clubsService: ClubsService,
+    private SupervisorService: SupervisorService
     ) { }
 
   // chub details area
@@ -45,21 +46,28 @@ export class SelectedclubComponent implements OnInit {
   ngOnInit(): void {
     this.clubId = this.route.snapshot.params['id'];
     this.getClub()
-    this.getClubSupervisor()
+    // this.getClubSupervisor()
     this.allmembers()
   }
 // This is for Club details child
   getClub(){
-    this.clubsService.findClub(this.clubId).subscribe(data => {this.clubData = data, console.log(data)});
+    this.clubsService.findClub(this.clubId).subscribe(data =>
+       {this.clubData = data
+        console.log(data)
+        this.SupervisorService.findSupervisor(data.supervisor).subscribe(supervisor=>{
+          this.supervisorData = supervisor
+        })
+      
+      });
   }
 
-  getClubSupervisor(){
-    this.clubsService.findClubSupervisor(this.clubId).subscribe(data => this.supervisorData = Object.assign({}, ...data));
-  }
+  // getClubSupervisor(){
+  //   this.clubsService.findClubSupervisor(this.clubId).subscribe(data => this.supervisorData = Object.assign({}, ...data));
+  // }
 
   // This is for club members child
   allmembers(){
-    this.clubsService.findClubMembers(this.clubId).subscribe(data =>{ this.dataSource = data, console.log(data)});
+    this.clubsService.findClubMembers(this.clubId).subscribe(data =>{ this.dataSource = data});
     
   }
   

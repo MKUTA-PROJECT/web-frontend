@@ -21,16 +21,19 @@ export class StaffService {
   }
 
   createStaff(staff){
-    return this.http.post<any>(this.geturl(), staff)
+    return this.http.post<any>(BASE_URL + 'auth/register/', staff)
   }
   updateStaff(staffID, data){
     return this.http.put<any>(this.geturl()+staffID+'/', data)
   }
-  createStaffProfile(staffProfile){
-    return this.http.post<any>(this.geturl()+'profile/',staffProfile)
+  createStaffProfile(staffID,staffProfile){
+    return this.http.post<any>(this.geturl()+staffID+'/profile/',staffProfile)
   }
   updateStaffProfile(staffProfileID, data){
-    return this.http.put<any>(this.geturl()+'profile/'+staffProfileID+'/', data)
+    return this.http.put<any>(this.geturl()+staffProfileID+'/profile/', data)
+  }
+  getStaffProfile(staffProfileID){
+    return this.http.get<any>(this.geturl()+staffProfileID+'/profile/')
   }
 
   private geturl(){

@@ -1,20 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StaffService } from 'src/app/shared/services/staff/staff.service';
+import { staff } from 'src/app/_model/staff';
 
-export interface staffArray {
-  id: any;
-  first_name: any;
-  middle_name: any;
-  last_name: any;
-  email: any;
-  roles: any;
-  user: any;
-  date_joined: any;
-  status: any;
-  position: any;
-  tel: any;
-}
 
 @Component({
   selector: 'app-selectedstaff',
@@ -30,7 +18,7 @@ export class SelectedstaffComponent implements OnInit {
 
   // staff details area
   staffId : number;
-  staffData: staffArray;
+  staffData: staff;
 
   ngOnInit(): void {
   this.staffId = this.route.snapshot.params['id'];
@@ -41,7 +29,26 @@ export class SelectedstaffComponent implements OnInit {
 
   getStaff(){
     this.staffsService.findStaff(this.staffId).subscribe(data => 
-      { this.staffData = Object.assign({}, ...data)
+      { this.staffData = data;
+
+      // Sex
+      if (this.staffData.sex ===1){
+        this.staffData.sex = "Male"
+      }
+      else {
+        this.staffData.sex = "Female"
+      }
+      
+      // Status
+      if (this.staffData.status ==1){
+        this.staffData.status ="Active"
+      }
+      else if (this.staffData.status ==2){
+        this.staffData.status="Domant"
+      }
+      else if (this.staffData.status ==3){
+        this.staffData.status="Dead"
+      }
         this.staffData.date_joined = this.staffData.date_joined.split("T")[0]
       });
   }

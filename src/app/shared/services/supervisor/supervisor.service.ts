@@ -17,7 +17,7 @@ export class SupervisorService {
   }
 
   findSupervisor(SupervisorId){
-
+    return this.http.get<any>(this.geturl()+SupervisorId+'/')
   }
   createSupervisor(Supervisor){
     return this.http.post<any>(this.geturl(), Supervisor)
@@ -27,9 +27,6 @@ export class SupervisorService {
   }
   deleteSupervisor(SupervisorId){
     
-  }
-  findClubSupervisor(clubId){
-    // return this.http.get<any>(`${BASE_URL}${this.model2}`+clubId+'/supervisor/')
   }
 
   private geturl(){

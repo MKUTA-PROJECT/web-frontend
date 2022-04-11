@@ -11,12 +11,27 @@ export class LookupService {
   private model = 'lookup/';
   constructor(private http: HttpClient) { }
 
+  // Member
   allMemberRoles(){
     return this.http.get<any>(this.geturl() + 'memberroles/')
   }
 
   getMemberRole(roleId){
     return this.http.get<any>(this.geturl() + 'memberroles/'+roleId+'/')
+  }
+
+  // staff
+  allStaffRoles(){
+    return this.http.get<any>(this.geturl() + 'staffroles/')
+  }
+
+  getStaffRole(roleId){
+    return this.http.get<any>(this.geturl() + 'staffroles/'+roleId+'/')
+  }
+
+  // Location
+  getLocation(locationId){
+    return this.http.get<any>(this.geturl() + 'location/'+locationId+'/')
   }
 
 

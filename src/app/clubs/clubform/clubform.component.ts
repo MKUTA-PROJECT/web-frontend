@@ -25,19 +25,22 @@ export class ClubformComponent implements OnInit {
   ) { }
 
   supervisors = this.SupervisorService.allSupervisors()
+  csos = this.clubsService.allCSO()
+  showContent = false
 
   registrationForm = this.fb.group({
     name:  ['',[Validators.required]],
     phone: ['',[Validators.required]],
     email: ['',[Validators.required,Validators.email,]],
     health_facility: ['',[Validators.required]],
-    office: ['',[Validators.required]],
+    is_under_cso: ['',[Validators.required]],
+    cso: ['',[Validators.required]],
     zone: ['',[Validators.required]],
     region: ['',[Validators.required]],
     district: ['',[Validators.required]],
     sub_district: [''],
     ward: ['',[Validators.required]],
-    street: ['',[Validators.required]],
+    street_or_village: ['',[Validators.required]],
     supervisor: [ ,[Validators.required]],
   })    
 

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClubsService } from '../shared/services/clubs/clubs.service';
 import { SupervisorService } from 'src/app/shared/services/supervisor/supervisor.service';
 import { clubArray } from '../_model/clubArray';
+import { LookupService } from '../shared/services/lookup/lookup.service';
 
 @Component({
   selector: 'app-clubs',
@@ -24,7 +25,11 @@ export class ClubsComponent implements AfterViewInit {
 
   clubValue: clubArray[];
 
-  constructor(private clubsService: ClubsService,private SupervisorService: SupervisorService, private router: Router, private route:ActivatedRoute) {
+  constructor(private clubsService: ClubsService,
+    private SupervisorService: SupervisorService, 
+    private router: Router, 
+    private route:ActivatedRoute,
+    private LookupService: LookupService) {
    
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.clubValue);
@@ -60,16 +65,27 @@ export class ClubsComponent implements AfterViewInit {
     this.clubsService.allClubs().subscribe(clubs =>
        {this.ELEMENT_DATA = clubs
 
-        // for(let i=0;i<this.ELEMENT_DATA.length;i++){ //to return the name of supervisor instead of  the id
-        //   this.SupervisorService.findClubSupervisor(this.ELEMENT_DATA[i].id).subscribe(
-        //       data=>{
-        //         let name:{ first_name: any;last_name: any; }
-        //         name =  Object.assign({}, ...data)
-        //         this.ELEMENT_DATA[i].supervisor= name.first_name + " " + name.last_name
-        //       }
-        //      )
-        // }
-       
+        for(let i=0;i<this.ELEMENT_DATA.length;i++){ //to return the name of supervisor instead of  the id
+          this.SupervisorService.findSupervisor(this.ELEMENT_DATA[i].supervisor).subscribe(
+              data=>{
+                let name:{ first_name: any;last_name: any; }
+                name = data
+                this.ELEMENT_DATA[i].supervisor= name.first_name + " " + name.last_name
+              }
+             )
+
+          this.LookupService.getLocation(this.ELEMENT_DATA[i].id).subscribe(data=>{
+            this.ELEMENT_DATA[i].zone = data.zone;
+            this.ELEMENT_DATA[i].region = data.region;
+            this.ELEMENT_DATA[i].district = data.district;
+            this.ELEMENT_DATA[i].sub_district = data.subdistrict;
+            this.ELEMENT_DATA[i].ward = data.ward;
+            this.ELEMENT_DATA[i].street = data.street_or_village;
+            this.ELEMENT_DATA[i].facility = this.ELEMENT_DATA[i].health_facility_name;
+          })
+          
+        }
+       console.log(this.ELEMENT_DATA)
         this.dataSource.data = this.ELEMENT_DATA
       });
   }

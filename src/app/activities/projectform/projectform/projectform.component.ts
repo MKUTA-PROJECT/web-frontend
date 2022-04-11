@@ -69,10 +69,12 @@ export class ProjectformComponent implements OnInit {
 
     const name = this.registrationForm.get('name').value
     const description = this.registrationForm.get('description').value
+    const funder = this.registrationForm.get('funder').value
 
     const values = {
       'name': name,
       'description': description,
+      'funder': funder,
       'start_date': formattedStartDate,
       'end_date': formattedendDate,
     }
@@ -94,15 +96,16 @@ export class ProjectformComponent implements OnInit {
 
     const name = this.registrationForm.get('name').value
     const description = this.registrationForm.get('description').value
+    const funder = this.registrationForm.get('funder').value
 
     const values = {
       'name': name,
       'description': description,
+      'funder': funder,
       'start_date': formattedStartDate,
       'end_date': formattedendDate,
     }
 
-    console.log(values)
     this.projectsService.updateProject(this.projectId, values)
         .pipe(first())
         .subscribe({

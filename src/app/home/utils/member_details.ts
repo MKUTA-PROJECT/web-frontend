@@ -1,4 +1,5 @@
-export const memberDetails = {
+export const memberDetails =(a,b,c)=> {
+  return {
     initOptions: {
         renderer: 'svg',
         width: 500,
@@ -34,7 +35,8 @@ export const memberDetails = {
           name: 'People',
           type: 'bar',
           barWidth: '80%',
-          data: [163, 82, 200]
+          data: [a, b, c]
         }]
       }
 };
+}

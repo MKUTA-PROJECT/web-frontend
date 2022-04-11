@@ -1,5 +1,5 @@
 <div id="app-container">
-    <div id="sidebar-container">
+    <div id="sidebar-container" [hidden]="isShowing">
         <!-- logo section -->
         <div id="sidebar-logo">Mk<span style="font-weight: 100;">uta</span></div>
 
@@ -19,7 +19,7 @@
                     <div id="profile-picture"></div>
                     <div class="profile-info">
                         <div id="profile-name">Malik Anderson</div>
-                        <div id="profile-position">Admin</div>
+                        <div id="profile-position">Admin <p>{{isShowing}}</p></div>
                     </div>
                 </div>
                 <div id="show-more">
@@ -30,6 +30,7 @@
     </div>
 
     <div id="content-area-container">
+        
         <router-outlet></router-outlet>
     </div>
 

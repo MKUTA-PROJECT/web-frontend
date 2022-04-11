@@ -3,6 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LookupService } from '../shared/services/lookup/lookup.service';
 import { StaffService } from '../shared/services/staff/staff.service';
 
 export interface staffArray {
@@ -13,10 +14,11 @@ export interface staffArray {
   email: any;
   roles: any;
   user: any;
+  sex: any;
   date_joined: any;
   status: any;
   position: any;
-  tel: any;
+  phone: any;
 }
 
 
@@ -28,8 +30,8 @@ export interface staffArray {
 })
 export class StaffComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'first_name', 'middle_name', 'last_name','position','tel',
-  'email', 'status',];
+  displayedColumns: string[] = ['id', 'first_name', 'middle_name', 'last_name','position','phone',
+  'email','sex'];
   dataSource: MatTableDataSource<staffArray>;
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,7 +39,10 @@ export class StaffComponent implements AfterViewInit {
 
 memberValue: staffArray[];
 
-  constructor(private router: Router, private route:ActivatedRoute, private staffService: StaffService) {
+  constructor(private router: Router, 
+    private route:ActivatedRoute, 
+    private staffService: StaffService,
+    private LookupService:LookupService) {
      // Assign the data to the data source for the table to render
      this.dataSource = new MatTableDataSource(this.memberValue);
    }
@@ -65,7 +70,31 @@ memberValue: staffArray[];
       this.router.navigateByUrl('/staffs/form');
     }
     // Below are service access methods for CRUID
+    ELEMENT_DATA: staffArray[]=[];
     allStaffs(){
-      this.staffService.allStaffs().subscribe(staffs => this.dataSource.data = staffs);
+      this.staffService.allStaffs().subscribe(members => 
+        {this.ELEMENT_DATA = members;
+
+          // to return the name of Club and Role instead of  the id
+          for(let i=0;i<this.ELEMENT_DATA.length;i++){ 
+            this.staffService.getStaffProfile(this.ELEMENT_DATA[i].id).subscribe(
+                data=>{
+                    // Sex
+                  if (this.ELEMENT_DATA[i].sex ==1){
+                    this.ELEMENT_DATA[i].sex = "Male"
+                  }
+                  else {
+                    this.ELEMENT_DATA[i].sex = "Female"
+                  }
+                //  staff role
+                  this.LookupService.getStaffRole(data.role).subscribe(role=>{
+                    this.ELEMENT_DATA[i].position = role.name
+                  })
+                }
+               )
+          }
+        //  console.log(this.ELEMENT_DATA)
+          this.dataSource.data = this.ELEMENT_DATA
+        });
     }
 }

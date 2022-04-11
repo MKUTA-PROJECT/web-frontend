@@ -15,6 +15,10 @@ export class ClubsService {
     return this.http.get<any>(this.geturl(),)
   }
 
+  allCSO(){
+    return this.http.get<any>(this.geturl()+'cso/')
+  }
+
   findClub(clubId){
     return this.http.get<any>(this.geturl()+clubId+'/')
   }

@@ -9,4 +9,5 @@ export interface clubArray {
     ward: any;
     street: any;
     supervisor: any;
+    health_facility_name: any;
   }

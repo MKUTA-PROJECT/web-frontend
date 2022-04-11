@@ -34,13 +34,13 @@
       <mat-icon matSuffix>phone</mat-icon>
       <mat-error *ngIf="registrationForm.get('phone').hasError('required')"> Phone Number is required </mat-error>
     </mat-form-field>
-
+<!-- 
     <mat-form-field class="fieldCss" appearance="fill">
       <mat-label> Office</mat-label>
       <input matInput formControlName="office">
       <mat-error *ngIf="registrationForm.get('office').hasError('required')"> Office Name is required </mat-error>
       <mat-icon matSuffix>office</mat-icon>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field class="fieldCss" appearance="fill">
       <mat-label> Supervisor</mat-label>
@@ -52,6 +52,17 @@
       </mat-error>
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field> 
+
+    <mat-checkbox class="example-margin" [(ngModel)] = "showContent">Is the Club under CSO?</mat-checkbox>
+
+    <!-- displayed only if under_cso is true  -->
+    <mat-form-field class="fieldCss" appearance="fill" *ngIf="showContent">
+      <mat-label> Select the CSO</mat-label>
+      <mat-select formControlName="cso">
+        <mat-option *ngFor="let cso of csos | async" [value]="cso.id">{{ cso.name }}</mat-option>
+      </mat-select>
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
 
     <mat-card-header>
       <mat-card-subtitle>Location</mat-card-subtitle>
@@ -103,8 +114,8 @@
         <td>
           <mat-form-field class="fieldCss" appearance="fill">
             <mat-label>Street/Village</mat-label>
-            <input matInput placeholder="Ex. Sayansi" formControlName="street">
-            <mat-error *ngIf="registrationForm.get('street').hasError('required')"> Street is required </mat-error>
+            <input matInput placeholder="Ex. Sayansi" formControlName="street_or_village">
+            <mat-error *ngIf="registrationForm.get('street_or_village').hasError('required')"> Street is required </mat-error>
           </mat-form-field>
         </td>
       </tr>

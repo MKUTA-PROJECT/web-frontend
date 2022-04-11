@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     if ( Role.Chairperson ==  locals.role || Role.Member == locals.role){
      
      
-      this.member = Object.assign({}, ...await this.membersService.findMember(locals.id).toPromise())
+      this.member = await this.membersService.findMember(locals.id).toPromise()
     
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/clubs' + '/'+ this.member.club
       this.router.navigate([this.returnUrl]); 

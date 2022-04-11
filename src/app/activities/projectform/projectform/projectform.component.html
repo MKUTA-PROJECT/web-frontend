@@ -17,6 +17,14 @@
       <!-- <mat-icon matSuffix>short_text</mat-icon> -->
     </mat-form-field>
 
+    <mat-form-field class="fieldCss" appearance="fill">
+      <mat-label>Project Funder</mat-label>
+      <textarea matInput formControlName="funder"></textarea>
+      <mat-error *ngIf="registrationForm.get('description').hasError('required')"> Funder is required
+      </mat-error>
+      <!-- <mat-icon matSuffix>short_text</mat-icon> -->
+    </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Choose project start date</mat-label>
       <input matInput [matDatepicker]="picker">

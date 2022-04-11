@@ -62,9 +62,9 @@ export class MembersComponent implements AfterViewInit {
           for(let i=0;i<this.ELEMENT_DATA.length;i++){ 
             this.memberService.getMemberProfile(this.ELEMENT_DATA[i].id).subscribe(
                 data=>{
-                  let name:{ club: any; status:any; }
+                  let name:{ club_name: any; status:any; }
                   name =  data
-                  this.ELEMENT_DATA[i].club= name.club;
+                  this.ELEMENT_DATA[i].club= name.club_name;
                   this.ELEMENT_DATA[i].status= name.status;
 
 

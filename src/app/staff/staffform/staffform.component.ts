@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StaffService } from 'src/app/shared/services/staff/staff.service';
 import { first } from 'rxjs/operators';
+import { staff } from 'src/app/_model/staff';
+import { LookupService } from 'src/app/shared/services/lookup/lookup.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-staffform',
@@ -11,16 +14,24 @@ import { first } from 'rxjs/operators';
 })
 export class StaffformComponent implements OnInit {
 
-  staffData: { first_name: any; middle_name: any; last_name: any; email: any; roles: any; password: any; }
-  staffProfileData: { user: any; tel: any; status: any; position: any;}
+  staffData: { first_name: any; middle_name: any; last_name: any; email: any; roles: any; password: any; sex:any; phone:any;}
+  staffProfileData: { user: any; role: any;}
   staffID: any
   isAddMode: boolean;
+  staff: staff;
+
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder, 
-    private router: Router, 
-    private staffService: StaffService) { }
+    private location: Location, 
+    private router: Router,
+    private staffService: StaffService,
+    private LookupService:LookupService) { }
+
+
+    selectedRole: number;
+    roles = this.LookupService.allStaffRoles()
 
   ngOnInit(): void {
     this.staffID = this.route.snapshot.params['id'];
@@ -30,8 +41,21 @@ export class StaffformComponent implements OnInit {
     if  (!this.isAddMode) {
       this.staffService.findStaff(this.staffID).pipe(first())
         .subscribe(x =>{
-          console.log(x) 
-          this.registrationForm.patchValue(Object.assign({}, ...x)) 
+          this.staff = x; 
+           // Profie data
+           console.log(x)
+            // Sex
+            if (this.staff.sex ==1){
+              this.staff.sex = "1"
+            }
+            else if (this.staff.sex ==2){
+              this.staff.sex = "2"
+            }
+            
+              this.LookupService.getStaffRole(this.staff.role).subscribe(roles => {
+                this.selectedRole = roles.id
+              })
+          this.registrationForm.patchValue(this.staff) 
         }       
         )
     }
@@ -50,10 +74,10 @@ export class StaffformComponent implements OnInit {
     middle_name: ['',[Validators.required]],
     last_name: ['',[Validators.required]],
     email: ['',[Validators.required,Validators.email,]],
-    position: ['',[Validators.required]],
-    status: ['',[Validators.required]],
-    tel: ['',[Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(6),this.isAddMode ? Validators.required : Validators.nullValidator]],
+    role: ['',[Validators.required]],
+    sex: ['',[Validators.required]],
+    phone: ['',[Validators.required]],
+    password: ['', [this.isAddMode ? Validators.required : Validators.nullValidator, Validators.minLength(6),]],
     confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator],
   }) 
 
@@ -77,11 +101,13 @@ export class StaffformComponent implements OnInit {
         //Data to create a member
         this.staffData= {
           "first_name":this.registrationForm.value.first_name,
-          "middle_name":this.registrationForm.value.middle_name,
-          "last_name":this.registrationForm.value.last_name,
-          "email":this.registrationForm.value.email,
-          "roles": 2,
-          "password": this.registrationForm.value.password  
+            "middle_name":this.registrationForm.value.middle_name,
+            "last_name":this.registrationForm.value.last_name,
+            "email":this.registrationForm.value.email,  
+            "sex": this.registrationForm.value.sex,
+            "phone": this.registrationForm.value.phone,
+            "password":this.registrationForm.value.password, 
+            "roles": 1
         }
     
     this.staffService.createStaff(this.staffData).subscribe(result => {
@@ -90,11 +116,9 @@ export class StaffformComponent implements OnInit {
         //Data to create a member Profile inside the subscribe funx of create member
         this.staffProfileData= {
           "user": this.staffID,
-          "tel":this.registrationForm.value.tel,
-          "status":this.registrationForm.value.status,
-          "position":this.registrationForm.value.position, 
+          "role":this.registrationForm.value.role, 
         }
-      this.staffService.createStaffProfile(this.staffProfileData).
+      this.staffService.createStaffProfile(this.staffID,this.staffProfileData).
             subscribe(result => console.log('succeesful created Profile', result))
             this.router.navigateByUrl('/staffs');
       }
@@ -108,9 +132,11 @@ export class StaffformComponent implements OnInit {
     "first_name":this.registrationForm.value.first_name,
     "middle_name":this.registrationForm.value.middle_name,
     "last_name":this.registrationForm.value.last_name,
-    "email":this.registrationForm.value.email,   
-    "roles": 2,
-    "password":this.registrationForm.value.password
+    "email":this.registrationForm.value.email,  
+    "sex": this.registrationForm.value.sex,
+    "phone": this.registrationForm.value.phone,
+    "password":this.registrationForm.value.password, 
+    "roles": 1
    }
 
 
@@ -118,21 +144,17 @@ export class StaffformComponent implements OnInit {
   .pipe(first())
   .subscribe({
       next: result => {
-          // this.alertService.success('User updated', { keepAfterRouteChange: true });
-          // this.router.navigate(['../../'], { relativeTo: this.route });
           this.staffID = result.id,
   
           //Data to create a member Profile inside the subscribe funx of create member
           this.staffProfileData= {
             "user": this.staffID,
-            "tel":this.registrationForm.value.tel,
-            "status":this.registrationForm.value.status,
-            "position":this.registrationForm.value.position 
+            "role":this.registrationForm.value.role 
           }
         this.staffService.updateStaffProfile(this.staffID,this.staffProfileData)
             .pipe(first())
-            .subscribe(result => console.log('succeesful created Profile', result)),
-            this.router.navigateByUrl('/staffs');
+            .subscribe(result => console.log('succeesful udated Profile', this.staffProfileData)),
+            this.location.back();
           
       },
       error: error => {

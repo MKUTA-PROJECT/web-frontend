@@ -30,7 +30,10 @@ export class MemberformComponent implements OnInit {
 
   ELEMENT_DATA: memberArray;
   memberProfile:any;
+
   clubs = this.clubsService.allClubs()
+
+  selectedRole: number;
   roles = this.LookupService.allMemberRoles()
   ngOnInit(): void {
     this.memberID = this.route.snapshot.params['id'];
@@ -50,7 +53,6 @@ export class MemberformComponent implements OnInit {
             else if (this.ELEMENT_DATA.sex ==2){
               this.ELEMENT_DATA.sex = "2"
             }
-            console.log(this.ELEMENT_DATA)
 
             // Is post TB
             if (this.ELEMENT_DATA.is_post_tb ==true){
@@ -59,7 +61,6 @@ export class MemberformComponent implements OnInit {
             else if (this.ELEMENT_DATA.is_post_tb ==false){
               this.ELEMENT_DATA.is_post_tb = "False"
             }
-            console.log(this.ELEMENT_DATA)
             
             // Status
             if (this.ELEMENT_DATA.status ==1){
@@ -72,7 +73,7 @@ export class MemberformComponent implements OnInit {
               this.ELEMENT_DATA.status="3"
             }
               this.LookupService.getMemberRole(this.ELEMENT_DATA.role).subscribe(roles => {
-                this.ELEMENT_DATA.role = Object.assign({}, ...roles.map((x) => ({[x.id]: x.name})));
+                this.selectedRole = roles.id
               })
 
             this.registrationForm.patchValue(this.ELEMENT_DATA)        
@@ -98,7 +99,7 @@ export class MemberformComponent implements OnInit {
     is_post_tb: ['',[Validators.required]],
     phone: ['',[Validators.required]],
     club: [ '',[Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(6),this.isAddMode ? Validators.required : Validators.nullValidator]],
+    password: ['', [this.isAddMode ? Validators.required : Validators.nullValidator, Validators.minLength(6),]],
     confirmPassword: ['', this.isAddMode ? Validators.required : Validators.nullValidator],
   },{
     validator: MustMatch('password', 'confirmPassword')
@@ -137,12 +138,13 @@ private createMember(){
             "email":this.registrationForm.value.email,  
             "sex": this.registrationForm.value.sex,
             "phone": this.registrationForm.value.phone,
-            "password":this.registrationForm.value.password, 
+            "password":'mkuta2022', 
+            "roles": 3
           }
     
       this.membersService.createMember(this.memberData).subscribe(result => {
         this.memberID = result.id,
-  
+          console.log('member created successfuly',result)
           //Data to create a member Profile inside the subscribe funx of create member
           this.memberProfileData= {
             "user": this.memberID,
@@ -162,11 +164,13 @@ private createMember(){
 private updateMember(){
    //Data to create a member
    this.memberData= {
-    "first_name":this.registrationForm.value.first_name,
-    "middle_name":this.registrationForm.value.middle_name,
-    "last_name":this.registrationForm.value.last_name,
-    "email":this.registrationForm.value.email,   
-    "password":this.registrationForm.value.password
+      "first_name":this.registrationForm.value.first_name,
+      "middle_name":this.registrationForm.value.middle_name,
+      "last_name":this.registrationForm.value.last_name,
+      "email":this.registrationForm.value.email,  
+      "sex": this.registrationForm.value.sex,
+      "phone": this.registrationForm.value.phone,
+      "password":this.registrationForm.value.password, 
    }
 
 
@@ -181,11 +185,10 @@ private updateMember(){
           //Data to create a member Profile inside the subscribe funx of create member
           this.memberProfileData= {
             "user": this.memberID,
-            "tel":this.registrationForm.value.tel,
             "status":this.registrationForm.value.status,
-            "fee_status":this.registrationForm.value.fee_status,
-            "role":this.registrationForm.value.role, 
-            "club":this.registrationForm.value.club,    
+            "role":this.selectedRole, 
+            "club":this.registrationForm.value.club,  
+            "is_post_tb": this.registrationForm.value.is_post_tb     
           }
         this.membersService.updateMemberProfile(this.memberID,this.memberProfileData)
             .pipe(first())
