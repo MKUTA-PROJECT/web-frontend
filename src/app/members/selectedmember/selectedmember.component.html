@@ -2,11 +2,12 @@
     <div>
         <app-memberdetail [memberData]="memberData"
         (editMember)=editMember($event)>
-
-        </app-memberdetail>
-    </div>
-    <div>
-        <app-memberactivities hidden>
+        
+    </app-memberdetail>
+</div>
+<div>
+    <app-memberactivities [contribution]="contribution" [memberId]="memberId"
+            (editContribution)=editContribution($event) >
 
         </app-memberactivities>
     </div>

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-clubleaders',
   templateUrl: './clubleaders.component.html',
   styleUrls: ['./clubleaders.component.scss']
 })
-export class ClubleadersComponent implements OnInit {
+export class ClubleadersComponent{
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  @Input() clubLeader: any;
 
 }

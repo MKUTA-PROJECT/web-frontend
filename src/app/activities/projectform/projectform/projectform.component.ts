@@ -27,6 +27,7 @@ export class ProjectformComponent implements OnInit {
 
   registrationForm = this.fb.group({
     name:  ['',[Validators.required]],
+    funder:  ['',[Validators.required]],
     description: ['',[Validators.required]],
     start_date:new FormControl(),
     end_date: new FormControl(),

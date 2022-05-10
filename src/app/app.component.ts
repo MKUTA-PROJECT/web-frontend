@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { strictEqual } from 'assert';
 import { AuthService } from './_auth/auth.service';
 import { Role } from './_model/roles';
 import { User } from './_model/User';
@@ -61,7 +62,14 @@ export class AppComponent {
       return ''
     }
   }
+  GetRoleName(){
+    if (String(this.role) == '4'){
+      return 'Admin'
+    }
+  }
   username = this.getName()
+
+  roleName = this.GetRoleName()
 
   getMenuItems(role: Role) {
     switch (role) {
@@ -76,7 +84,7 @@ export class AppComponent {
 
       case Role.Member:
         return [
-          { id: 'menu-item-home', path: 'home', label: 'Home' },
+          { id: 'menu-item-home', path: 'clubs/'+'1', label: 'Home' },
           { id: 'menu-item-payment', path: 'payments', label: 'Payment' },
           { id: 'menu-item-leadership', path: 'leadership', label: 'Leadership' },
         ];

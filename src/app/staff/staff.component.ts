@@ -67,7 +67,8 @@ memberValue: staffArray[];
     } 
     // Staff registration function
     registerStaff(){
-      this.router.navigateByUrl('/staffs/form');
+
+      // this.router.navigateByUrl('/staffs/form');  Currently staffs will be registered using the admin
     }
     // Below are service access methods for CRUID
     ELEMENT_DATA: staffArray[]=[];
@@ -93,7 +94,6 @@ memberValue: staffArray[];
                 }
                )
           }
-        //  console.log(this.ELEMENT_DATA)
           this.dataSource.data = this.ELEMENT_DATA
         });
     }

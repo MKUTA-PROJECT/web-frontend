@@ -39,7 +39,7 @@ export class SelectedclubComponent implements OnInit {
   clubId : number;
   clubData: any;
   supervisorData: any;
-
+  clubLeader:any;
   // Club members area
   dataSource: memberArray[];
 
@@ -59,6 +59,11 @@ export class SelectedclubComponent implements OnInit {
         })
       
       });
+
+      // find leaders
+      this.clubsService.findClubLeaders(this.clubId).subscribe(data=>{
+        this.clubLeader = data
+      })
   }
 
   // getClubSupervisor(){

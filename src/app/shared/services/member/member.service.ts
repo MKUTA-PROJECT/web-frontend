@@ -29,18 +29,28 @@ export class MemberService {
   createMemberProfile(memberID, data){
     return this.http.post<any>(this.geturl()+memberID+'/profile/', data)
   }
-
   getMemberProfile(memberProfile){
     return this.http.get<any>(this.geturl()+memberProfile+'/profile/')
   }
-
+  
   updateMemberProfile(memberProfile, data){
     return this.http.put<any>(this.geturl()+memberProfile+'/profile/', data)
   }
-
+  
   allMemberRoles(){
     return this.http.get<any>(this.geturl(),)
   }
+  
+  createMemberContribution(data){
+    return this.http.post<any>(this.geturl()+ 'contribution/', data)
+  }
+
+  getAllMemberContributions(memberID){
+    return this.http.get<any>(this.geturl()+memberID+'/contribution/')
+  }
+  
+
+
   private geturl(){
     return `${BASE_URL}${this.model}`;
   }

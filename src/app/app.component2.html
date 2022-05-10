@@ -1,7 +1,46 @@
+<div class="display:flex;flex-direction:column">
+  <mat-toolbar color="primary"  style="height:50px;" *ngIf="user">
+    <span>
+      <button mat-mini-fab (click)="toggle()" color="primary">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="logo">
+        <img src="assets/logo.png" alt="Logo">
+      </span>
+      <span class="title">
+        {{ title }}
+      </span>
+    </span>
+    <span class="spacer"></span>
+
+    <button class="login" mat-mini-fab (click)="help()" color="primary">
+      <mat-icon>help</mat-icon>
+    </button>
+    <button class="login" mat-mini-fab  [matMenuTriggerFor]="account" color="primary">
+      <mat-icon>person</mat-icon>
+    </button>
+      <mat-menu #account="matMenu">
+        <mat-card>
+    
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{username}}</mat-card-title>
+              
+          </mat-card-header>
+            <div style="text-align: center; color:#7048ec;">My MIMS Account</div>
+          <mat-card-content>
+           
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button  (click)="logout()">Logout</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-menu>
+  </mat-toolbar>
 <div id="app-container">
     <div id="sidebar-container" [hidden]="isShowing">
         <!-- logo section -->
-        <div id="sidebar-logo">Mk<span style="font-weight: 100;">uta</span></div>
+        <!-- <div id="sidebar-logo">Mk<span style="font-weight: 100;">uta</span></div> -->
 
         <!-- menu section -->
         <div id="sidebar-menu-section">
@@ -13,20 +52,17 @@
         </div>
 
         <!-- profile section -->
-        <div id="sidebar-profile-section">
+        <!-- <div id="sidebar-profile-section">
             <div id="sidebar-profile-section-container">
                 <div class="left">
                     <div id="profile-picture"></div>
                     <div class="profile-info">
-                        <div id="profile-name">Malik Anderson</div>
-                        <div id="profile-position">Admin <p>{{isShowing}}</p></div>
+                        <div id="profile-name">{{username}}</div>
+                        <div id="profile-position">{{role}} </div>
                     </div>
                 </div>
-                <div id="show-more">
-                    <mat-icon>expand_more</mat-icon>
-                </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div id="content-area-container">
@@ -34,4 +70,5 @@
         <router-outlet></router-outlet>
     </div>
 
+</div>
 </div>

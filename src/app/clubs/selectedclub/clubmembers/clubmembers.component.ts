@@ -12,6 +12,7 @@ export class ClubmembersComponent  {
 
   displayedColumns: string[] = ['id', 'first_name', 'middle_name', 'last_name', 'tel','status','fee_status'];
   @Input() dataSource: any;
+  @Input() clubID: any;
   
     // On clicking the row data, load this method
     selectedMember(id) {
@@ -20,6 +21,6 @@ export class ClubmembersComponent  {
 
     // Member registration function
     registerMember(){
-      this.router.navigateByUrl('/members/form');
+      this.router.navigate(['/members/form/',this.clubID]);
     }
 }

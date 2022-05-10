@@ -19,6 +19,7 @@ import { MessageComponent } from './message/message.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ProjectformComponent } from './activities/projectform/projectform/projectform.component';
 import { SelectedprojectComponent } from './activities/selectedproject/selectedproject/selectedproject.component';
+import { PaymentformComponent } from './members/selectedmember/paymentform/paymentform.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -42,6 +43,8 @@ const routes: Routes = [
   { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
   { path: 'members/form', component: MemberformComponent, canActivate: [AuthGuard] },
   { path: 'members/form/:id', component: MemberformComponent, canActivate: [AuthGuard] },
+  { path: 'memberscontrib/form', component: PaymentformComponent, canActivate: [AuthGuard] },
+  { path: 'memberscontrib/form/:id', component: PaymentformComponent, canActivate: [AuthGuard] },
   { path: 'members/:id', component: SelectedmemberComponent, canActivate: [AuthGuard] },
 
   { path: 'clients', component: ClientsComponent, canActivate: [AuthGuard] },

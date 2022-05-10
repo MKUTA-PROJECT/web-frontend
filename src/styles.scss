@@ -44,7 +44,7 @@ p {
 
 .mat-card-header-text {
   margin-left: 0;
-  border-bottom: 1px solid #b9e05c;
+  border-bottom: 1px solid #7048ec;
 }
 
 .header {
@@ -65,6 +65,9 @@ mat-toolbar {
   z-index: 1;
 }
 
+.mat-toolbar.mat-primary {
+  background: transparent;
+}
 
 mat-sidenav {
   // box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);

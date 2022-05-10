@@ -1,0 +1,45 @@
+table {
+    width: 100%;
+  }
+  
+  cdk-virtual-scroll-viewport {
+    height: 20vh;
+  }
+  
+  .mat-row:hover {
+    background: whitesmoke;
+    cursor: pointer;
+  }
+  
+  p {
+    color: grey;
+    font-weight: bold;
+    margin-top: 40px;
+  }
+  
+  button {
+    margin-bottom: 20px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 10px 40px; 
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    border: 1.5px solid #7048ec;  
+    background-color: #7048ec;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: transparent;
+    color: #7048ec;
+  }
+  
+  table {
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  }

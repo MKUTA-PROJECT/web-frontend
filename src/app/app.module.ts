@@ -51,6 +51,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PaymentformComponent } from './members/selectedmember/paymentform/paymentform.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { MatInputModule } from '@angular/material/input';
     ProjectdetailsComponent,
     ProjectmembersComponent,
     DialogComponent,
+    PaymentformComponent,
   ],
   imports: [
     BrowserModule,

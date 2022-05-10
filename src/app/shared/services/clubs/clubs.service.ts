@@ -25,6 +25,9 @@ export class ClubsService {
   findClubMembers(clubId){
     return this.http.get<any>(`${BASE_URL}${this.model}`+clubId+'/member/')
   }
+  findClubLeaders(clubId){
+    return this.http.get<any>(`${BASE_URL}${this.model}`+clubId+'/leader/')
+  }
   findClubSupervisor(clubId){
     return this.http.get<any>(`${BASE_URL}${this.model}`+clubId+'/supervisor/')
   }
